@@ -1,0 +1,598 @@
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>Neuroimaging in Python &#8212; NIPY Documentation</title>
+    <link rel="stylesheet" href="../../_static/nipy.css" type="text/css" />
+    <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '../../',
+        VERSION:     '0.5.0.dev',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true,
+        SOURCELINK_SUFFIX: '.txt'
+      };
+    </script>
+    <script type="text/javascript" src="../../_static/jquery.js"></script>
+    <script type="text/javascript" src="../../_static/underscore.js"></script>
+    <script type="text/javascript" src="../../_static/doctools.js"></script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+    <link rel="next" title="algorithms.clustering.imm" href="nipy.algorithms.clustering.imm.html" />
+    <link rel="prev" title="algorithms.clustering.gmm" href="nipy.algorithms.clustering.gmm.html" />
+  <meta name="keywords" content="nipy, neuroimaging, python, neuroscience, time
+				 series">
+
+  </head>
+  <body>
+<div style="background-color: white; text-align: left; padding: 10px 10px 15px 15px">
+ <a href="../../index.html">
+  <img src="../../_static/reggie2.png" alt="NIPY logo"  border="0" />
+</div>
+
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../../genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="../../py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li class="right" >
+          <a href="nipy.algorithms.clustering.imm.html" title="algorithms.clustering.imm"
+             accesskey="N">next</a> |</li>
+        <li class="right" >
+          <a href="nipy.algorithms.clustering.gmm.html" title="algorithms.clustering.gmm"
+             accesskey="P">previous</a> |</li>
+  <li><a href="../../index.html">NIPY home</a> |&nbsp;</li>
+
+          <li class="nav-item nav-item-1"><a href="../../documentation.html" >NIPY documentation</a> &#187;</li>
+          <li class="nav-item nav-item-2"><a href="../index.html" accesskey="U">API</a> &#187;</li> 
+      </ul>
+    </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+
+  
+<h4> Site Navigation </h4>
+  <ul>
+    <li><a href="../../documentation.html">Documentation</a></li>
+    <li><a href="../../devel/index.html">Development</a></li>
+  </ul>
+
+<h4> NIPY Community </h4>
+  <ul class="simple">
+    <li><a class="reference external"
+	href="http://nipy.org/">Community Home</a></li>
+    <li><a class="reference external"
+	href="http://nipy.org/project-directory">NIPY Projects</a></li>
+    <li><a class="reference external"
+	href="https://mail.python.org/mailman/listinfo/neuroimaging">Mailing List</a></li>
+    <li><a class="reference external"
+	href="license.html">License</a></li>
+  </ul>
+
+<h4> Github repo </h4>
+  <ul class="simple">
+    <li><a class="reference external"
+	href="http://github.com/nipy/nipy/">Nipy Github</a></li>
+  </ul>
+
+  <h3><a href="../../index.html">Table Of Contents</a></h3>
+  <ul>
+<li><a class="reference internal" href="#">algorithms.clustering.hierarchical_clustering</a><ul>
+<li><a class="reference internal" href="#module-algorithms-clustering-hierarchical-clustering">Module: <code class="docutils literal"><span class="pre">algorithms.clustering.hierarchical_clustering</span></code></a></li>
+<li><a class="reference internal" href="#class">Class</a></li>
+<li><a class="reference internal" href="#weightedforest"><code class="docutils literal"><span class="pre">WeightedForest</span></code></a></li>
+<li><a class="reference internal" href="#functions">Functions</a></li>
+</ul>
+</li>
+</ul>
+
+  <h4>Previous topic</h4>
+  <p class="topless"><a href="nipy.algorithms.clustering.gmm.html"
+                        title="previous chapter">algorithms.clustering.gmm</a></p>
+  <h4>Next topic</h4>
+  <p class="topless"><a href="nipy.algorithms.clustering.imm.html"
+                        title="next chapter">algorithms.clustering.imm</a></p>
+  <div role="note" aria-label="source link">
+    <h3>This Page</h3>
+    <ul class="this-page-menu">
+      <li><a href="../../_sources/api/generated/nipy.algorithms.clustering.hierarchical_clustering.rst.txt"
+            rel="nofollow">Show Source</a></li>
+    </ul>
+   </div>
+
+<div id="searchbox-ml" style="display: none">
+  <h3>Search mailing list archive</h3>
+  <script type="text/javascript">
+    function mlsearch(curobj)
+    {
+    curobj.q.value="site:http://mail.python.org/pipermail/neuroimaging/ "+curobj.userquery.value
+    }
+  </script>
+  <form action="http://www.google.com/search" method="get" onSubmit="mlsearch(this)">
+    <input name="userquery" size="13" type="text" /> <input type="submit" value="Go" />
+    <input name="q" type="hidden" />
+  </form>
+</div>
+  
+<div id="searchbox-site" style="display: none">
+  <h3>Search this site</h3>
+    <form class="search" action="../../search.html" method="get">
+      <input type="text" name="q" size="13" />
+      <input type="submit" value="Go" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+    <p class="searchtip" style="font-size: 90%">
+    </p>
+</div>
+<script type="text/javascript">$('#searchbox-ml').show(0);</script>
+<script type="text/javascript">$('#searchbox-site').show(0);</script>
+
+
+        </div>
+      </div>
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <div class="section" id="algorithms-clustering-hierarchical-clustering">
+<h1>algorithms.clustering.hierarchical_clustering<a class="headerlink" href="#algorithms-clustering-hierarchical-clustering" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="module-algorithms-clustering-hierarchical-clustering">
+<h2>Module: <code class="xref py py-mod docutils literal"><span class="pre">algorithms.clustering.hierarchical_clustering</span></code><a class="headerlink" href="#module-algorithms-clustering-hierarchical-clustering" title="Permalink to this headline">¶</a></h2>
+<p>Inheritance diagram for <code class="docutils literal"><span class="pre">nipy.algorithms.clustering.hierarchical_clustering</span></code>:</p>
+<img src="../../_images/inheritance-728a327e762271845c3835ff178f19fb8d6b5609.png" alt="Inheritance diagram of nipy.algorithms.clustering.hierarchical_clustering" usemap="#inheritance1a5d4ec8c5" class="inheritance"/>
+<map id="inheritance1a5d4ec8c5" name="inheritance1a5d4ec8c5">
+<area shape="rect" id="node1" href="#nipy.algorithms.clustering.hierarchical_clustering.WeightedForest" target="_top" title="This is a weighted Forest structure, i.e. a tree" alt="" coords="501,4,764,25"/>
+<area shape="rect" id="node2" href="nipy.algorithms.graph.forest.html#nipy.algorithms.graph.forest.Forest" target="_top" title="Forest structure, i.e. a set of trees" alt="" coords="351,4,463,25"/>
+<area shape="rect" id="node3" href="nipy.algorithms.graph.graph.html#nipy.algorithms.graph.graph.WeightedGraph" target="_top" title="Basic weighted, directed graph class" alt="" coords="154,4,314,25"/>
+<area shape="rect" id="node4" href="nipy.algorithms.graph.graph.html#nipy.algorithms.graph.graph.Graph" target="_top" title="Basic topological (non&#45;weighted) directed Graph class" alt="" coords="4,4,117,25"/>
+</map>
+<span class="target" id="module-nipy.algorithms.clustering.hierarchical_clustering"></span><p>These routines perform some hierrachical agglomerative clustering
+of some input data. The following alternatives are proposed:
+- Distance based average-link
+- Similarity-based average-link
+- Distance based maximum-link
+- Ward’s algorithm under graph constraints
+- Ward’s algorithm without graph constraints</p>
+<p>In this latest version, the results are returned in a ‘WeightedForest’
+structure, which gives access to the clustering hierarchy, facilitates
+the plot of the result etc.</p>
+<p>For back-compatibility, <a href="#id1"><span class="problematic" id="id2">*</span></a>_segment versions of the algorithms have been
+appended, with the old API (except the qmax parameter, which now
+represents the number of wanted clusters)</p>
+<p>Author : Bertrand Thirion,Pamela Guevara, 2006-2009</p>
+</div>
+<div class="section" id="class">
+<h2>Class<a class="headerlink" href="#class" title="Permalink to this headline">¶</a></h2>
+</div>
+<div class="section" id="weightedforest">
+<h2><a class="reference internal" href="#nipy.algorithms.clustering.hierarchical_clustering.WeightedForest" title="nipy.algorithms.clustering.hierarchical_clustering.WeightedForest"><code class="xref py py-class docutils literal"><span class="pre">WeightedForest</span></code></a><a class="headerlink" href="#weightedforest" title="Permalink to this headline">¶</a></h2>
+<dl class="class">
+<dt id="nipy.algorithms.clustering.hierarchical_clustering.WeightedForest">
+<em class="property">class </em><code class="descclassname">nipy.algorithms.clustering.hierarchical_clustering.</code><code class="descname">WeightedForest</code><span class="sig-paren">(</span><em>V</em>, <em>parents=None</em>, <em>height=None</em><span class="sig-paren">)</span><a class="headerlink" href="#nipy.algorithms.clustering.hierarchical_clustering.WeightedForest" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="nipy.algorithms.graph.forest.html#nipy.algorithms.graph.forest.Forest" title="nipy.algorithms.graph.forest.Forest"><code class="xref py py-class docutils literal"><span class="pre">nipy.algorithms.graph.forest.Forest</span></code></a></p>
+<p>This is a weighted Forest structure, i.e. a tree
+- each node has one parent and children
+(hierarchical structure)
+- some of the nodes can be viewed as leaves, other as roots
+- the edges within a tree are associated with a weight:
++1 from child to parent
+-1 from parent to child
+- additionally, the nodes have a value, which is called ‘height’,
+especially useful from dendrograms</p>
+<dl class="method">
+<dt id="nipy.algorithms.clustering.hierarchical_clustering.WeightedForest.__init__">
+<code class="descname">__init__</code><span class="sig-paren">(</span><em>V</em>, <em>parents=None</em>, <em>height=None</em><span class="sig-paren">)</span><a class="headerlink" href="#nipy.algorithms.clustering.hierarchical_clustering.WeightedForest.__init__" title="Permalink to this definition">¶</a></dt>
+<dd><table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><p class="first"><strong>V: the number of edges of the graph</strong></p>
+<p><strong>parents=None: array of shape (V)</strong></p>
+<blockquote>
+<div><p>the parents of the graph
+by default, the parents are set to range(V), i.e. each
+node is its own parent, and each node is a tree</p>
+</div></blockquote>
+<p><strong>height=None: array of shape(V)</strong></p>
+<blockquote class="last">
+<div><p>the height of the nodes</p>
+</div></blockquote>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="nipy.algorithms.clustering.hierarchical_clustering.WeightedForest.check_compatible_height">
+<code class="descname">check_compatible_height</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#nipy.algorithms.clustering.hierarchical_clustering.WeightedForest.check_compatible_height" title="Permalink to this definition">¶</a></dt>
+<dd><p>Check that height[parents[i]]&gt;=height[i] for all nodes</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="nipy.algorithms.clustering.hierarchical_clustering.WeightedForest.get_height">
+<code class="descname">get_height</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#nipy.algorithms.clustering.hierarchical_clustering.WeightedForest.get_height" title="Permalink to this definition">¶</a></dt>
+<dd><p>Get the height array</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="nipy.algorithms.clustering.hierarchical_clustering.WeightedForest.list_of_subtrees">
+<code class="descname">list_of_subtrees</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#nipy.algorithms.clustering.hierarchical_clustering.WeightedForest.list_of_subtrees" title="Permalink to this definition">¶</a></dt>
+<dd><p>returns the list of all non-trivial subtrees in the graph
+Caveat: theis function assumes that the vertices are sorted in a
+way such that parent[i]&gt;i forall i
+Only the leaves are listeed, not the subtrees themselves</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="nipy.algorithms.clustering.hierarchical_clustering.WeightedForest.partition">
+<code class="descname">partition</code><span class="sig-paren">(</span><em>threshold</em><span class="sig-paren">)</span><a class="headerlink" href="#nipy.algorithms.clustering.hierarchical_clustering.WeightedForest.partition" title="Permalink to this definition">¶</a></dt>
+<dd><p>Partition the tree according to a cut criterion</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="nipy.algorithms.clustering.hierarchical_clustering.WeightedForest.plot">
+<code class="descname">plot</code><span class="sig-paren">(</span><em>ax=None</em><span class="sig-paren">)</span><a class="headerlink" href="#nipy.algorithms.clustering.hierarchical_clustering.WeightedForest.plot" title="Permalink to this definition">¶</a></dt>
+<dd><p>Plot the dendrogram associated with self
+the rank of the data in the dendogram is returned</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>ax: axis handle, optional</strong></td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body">ax, the axis handle</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="nipy.algorithms.clustering.hierarchical_clustering.WeightedForest.plot_height">
+<code class="descname">plot_height</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#nipy.algorithms.clustering.hierarchical_clustering.WeightedForest.plot_height" title="Permalink to this definition">¶</a></dt>
+<dd><p>Plot the height of the non-leaves nodes</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="nipy.algorithms.clustering.hierarchical_clustering.WeightedForest.set_height">
+<code class="descname">set_height</code><span class="sig-paren">(</span><em>height=None</em><span class="sig-paren">)</span><a class="headerlink" href="#nipy.algorithms.clustering.hierarchical_clustering.WeightedForest.set_height" title="Permalink to this definition">¶</a></dt>
+<dd><p>Set the height array</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="nipy.algorithms.clustering.hierarchical_clustering.WeightedForest.split">
+<code class="descname">split</code><span class="sig-paren">(</span><em>k</em><span class="sig-paren">)</span><a class="headerlink" href="#nipy.algorithms.clustering.hierarchical_clustering.WeightedForest.split" title="Permalink to this definition">¶</a></dt>
+<dd><p>idem as partition, but a number of components are supplied instead</p>
+</dd></dl>
+
+</dd></dl>
+
+</div>
+<div class="section" id="functions">
+<h2>Functions<a class="headerlink" href="#functions" title="Permalink to this headline">¶</a></h2>
+<dl class="function">
+<dt id="nipy.algorithms.clustering.hierarchical_clustering.average_link_graph">
+<code class="descclassname">nipy.algorithms.clustering.hierarchical_clustering.</code><code class="descname">average_link_graph</code><span class="sig-paren">(</span><em>G</em><span class="sig-paren">)</span><a class="headerlink" href="#nipy.algorithms.clustering.hierarchical_clustering.average_link_graph" title="Permalink to this definition">¶</a></dt>
+<dd><p>Agglomerative function based on a (hopefully sparse) similarity graph</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>G the input graph</strong></td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body">t a weightForest structure that represents the dendrogram of the data</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="function">
+<dt id="nipy.algorithms.clustering.hierarchical_clustering.average_link_graph_segment">
+<code class="descclassname">nipy.algorithms.clustering.hierarchical_clustering.</code><code class="descname">average_link_graph_segment</code><span class="sig-paren">(</span><em>G</em>, <em>stop=0</em>, <em>qmax=1</em>, <em>verbose=False</em><span class="sig-paren">)</span><a class="headerlink" href="#nipy.algorithms.clustering.hierarchical_clustering.average_link_graph_segment" title="Permalink to this definition">¶</a></dt>
+<dd><p>Agglomerative function based on a (hopefully sparse) similarity graph</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><p class="first"><strong>G the input graph</strong></p>
+<p><strong>stop: float</strong></p>
+<blockquote>
+<div><p>the stopping criterion</p>
+</div></blockquote>
+<p><strong>qmax: int, optional</strong></p>
+<blockquote>
+<div><p>the number of desired clusters (in the limit of the stopping criterion)</p>
+</div></blockquote>
+<p><strong>verbose</strong> : bool, optional</p>
+<blockquote>
+<div><p>If True, print diagnostic information</p>
+</div></blockquote>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first">u: array of shape (G.V)</p>
+<blockquote>
+<div><p>a labelling of the graph vertices according to the criterion</p>
+</div></blockquote>
+<p>cost: array of shape (G.V (?))</p>
+<blockquote class="last">
+<div><p>the cost of each merge step during the clustering procedure</p>
+</div></blockquote>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="function">
+<dt id="nipy.algorithms.clustering.hierarchical_clustering.fusion">
+<code class="descclassname">nipy.algorithms.clustering.hierarchical_clustering.</code><code class="descname">fusion</code><span class="sig-paren">(</span><em>K</em>, <em>pop</em>, <em>i</em>, <em>j</em>, <em>k</em><span class="sig-paren">)</span><a class="headerlink" href="#nipy.algorithms.clustering.hierarchical_clustering.fusion" title="Permalink to this definition">¶</a></dt>
+<dd><p>Modifies the graph K to merge nodes i and  j into nodes k</p>
+<p>The similarity values are weighted averaged, where pop[i] and pop[j]
+yield the relative weights.
+this is used in average_link_slow (deprecated)</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="nipy.algorithms.clustering.hierarchical_clustering.ward">
+<code class="descclassname">nipy.algorithms.clustering.hierarchical_clustering.</code><code class="descname">ward</code><span class="sig-paren">(</span><em>G</em>, <em>feature</em>, <em>verbose=False</em><span class="sig-paren">)</span><a class="headerlink" href="#nipy.algorithms.clustering.hierarchical_clustering.ward" title="Permalink to this definition">¶</a></dt>
+<dd><p>Agglomerative function based on a topology-defining graph
+and a feature matrix.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><p class="first"><strong>G</strong> : graph</p>
+<blockquote>
+<div><p>the input graph (a topological graph essentially)</p>
+</div></blockquote>
+<p><strong>feature</strong> : array of shape (G.V,dim_feature)</p>
+<blockquote>
+<div><p>vectorial information related to the graph vertices</p>
+</div></blockquote>
+<p><strong>verbose</strong> : bool, optional</p>
+<blockquote>
+<div><p>If True, print diagnostic information</p>
+</div></blockquote>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first"><strong>t</strong> : <code class="docutils literal"><span class="pre">WeightedForest</span></code> instance</p>
+<blockquote class="last">
+<div><p>structure that represents the dendrogram</p>
+</div></blockquote>
+</td>
+</tr>
+</tbody>
+</table>
+<p class="rubric">Notes</p>
+<p>When G has more than 1 connected component, t is no longer a tree.  This
+case is handled cleanly now</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="nipy.algorithms.clustering.hierarchical_clustering.ward_field_segment">
+<code class="descclassname">nipy.algorithms.clustering.hierarchical_clustering.</code><code class="descname">ward_field_segment</code><span class="sig-paren">(</span><em>F</em>, <em>stop=-1</em>, <em>qmax=-1</em>, <em>verbose=False</em><span class="sig-paren">)</span><a class="headerlink" href="#nipy.algorithms.clustering.hierarchical_clustering.ward_field_segment" title="Permalink to this definition">¶</a></dt>
+<dd><p>Agglomerative function based on a field structure</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><p class="first"><strong>F the input field (graph+feature)</strong></p>
+<p><strong>stop: float, optional</strong></p>
+<blockquote>
+<div><p>the stopping crterion.  if stop==-1, then no stopping criterion is used</p>
+</div></blockquote>
+<p><strong>qmax: int, optional</strong></p>
+<blockquote>
+<div><p>the maximum number of desired clusters (in the limit of the stopping
+criterion)</p>
+</div></blockquote>
+<p><strong>verbose</strong> : bool, optional</p>
+<blockquote>
+<div><p>If True, print diagnostic information</p>
+</div></blockquote>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first">u: array of shape (F.V)</p>
+<blockquote>
+<div><p>labelling of the graph vertices according to the criterion</p>
+</div></blockquote>
+<p>cost array of shape (F.V - 1)</p>
+<blockquote class="last">
+<div><p>the cost of each merge step during the clustering procedure</p>
+</div></blockquote>
+</td>
+</tr>
+</tbody>
+</table>
+<p class="rubric">Notes</p>
+<p>See ward_quick_segment for more information</p>
+<p>Caveat : only approximate</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="nipy.algorithms.clustering.hierarchical_clustering.ward_quick">
+<code class="descclassname">nipy.algorithms.clustering.hierarchical_clustering.</code><code class="descname">ward_quick</code><span class="sig-paren">(</span><em>G</em>, <em>feature</em>, <em>verbose=False</em><span class="sig-paren">)</span><a class="headerlink" href="#nipy.algorithms.clustering.hierarchical_clustering.ward_quick" title="Permalink to this definition">¶</a></dt>
+<dd><p>Agglomerative function based on a topology-defining graph
+and a feature matrix.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><p class="first"><strong>G</strong> : graph instance</p>
+<blockquote>
+<div><p>topology-defining graph</p>
+</div></blockquote>
+<p><strong>feature: array of shape (G.V,dim_feature)</strong></p>
+<blockquote>
+<div><p>some vectorial information related to the graph vertices</p>
+</div></blockquote>
+<p><strong>verbose</strong> : bool, optional</p>
+<blockquote>
+<div><p>If True, print diagnostic information</p>
+</div></blockquote>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first">t: weightForest instance,</p>
+<blockquote>
+<div><p>that represents the dendrogram of the data</p>
+</div></blockquote>
+<p>Notes</p>
+<p>Hopefully a quicker version</p>
+<p>A euclidean distance is used in the feature space</p>
+<p class="last"><strong>Caveat</strong> : only approximate</p>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="function">
+<dt id="nipy.algorithms.clustering.hierarchical_clustering.ward_quick_segment">
+<code class="descclassname">nipy.algorithms.clustering.hierarchical_clustering.</code><code class="descname">ward_quick_segment</code><span class="sig-paren">(</span><em>G</em>, <em>feature</em>, <em>stop=-1</em>, <em>qmax=1</em>, <em>verbose=False</em><span class="sig-paren">)</span><a class="headerlink" href="#nipy.algorithms.clustering.hierarchical_clustering.ward_quick_segment" title="Permalink to this definition">¶</a></dt>
+<dd><p>Agglomerative function based on a topology-defining graph
+and a feature matrix.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><p class="first"><strong>G: labs.graph.WeightedGraph instance</strong></p>
+<blockquote>
+<div><p>the input graph (a topological graph essentially)</p>
+</div></blockquote>
+<p><strong>feature array of shape (G.V,dim_feature)</strong></p>
+<blockquote>
+<div><p>vectorial information related to the graph vertices</p>
+</div></blockquote>
+<p><strong>stop1</strong> : int or float, optional</p>
+<blockquote>
+<div><p>the stopping crterion if stop==-1, then no stopping criterion is used</p>
+</div></blockquote>
+<p><strong>qmax</strong> : int, optional</p>
+<blockquote>
+<div><p>the maximum number of desired clusters (in the limit of the stopping
+criterion)</p>
+</div></blockquote>
+<p><strong>verbose</strong> : bool, optional</p>
+<blockquote>
+<div><p>If True, print diagnostic information</p>
+</div></blockquote>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first">u: array of shape (G.V)</p>
+<blockquote>
+<div><p>labelling of the graph vertices according to the criterion</p>
+</div></blockquote>
+<p>cost: array of shape (G.V - 1)</p>
+<blockquote class="last">
+<div><p>the cost of each merge step during the clustering procedure</p>
+</div></blockquote>
+</td>
+</tr>
+</tbody>
+</table>
+<p class="rubric">Notes</p>
+<p>Hopefully a quicker version</p>
+<p>A euclidean distance is used in the feature space</p>
+<p>Caveat : only approximate</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="nipy.algorithms.clustering.hierarchical_clustering.ward_segment">
+<code class="descclassname">nipy.algorithms.clustering.hierarchical_clustering.</code><code class="descname">ward_segment</code><span class="sig-paren">(</span><em>G</em>, <em>feature</em>, <em>stop=-1</em>, <em>qmax=1</em>, <em>verbose=False</em><span class="sig-paren">)</span><a class="headerlink" href="#nipy.algorithms.clustering.hierarchical_clustering.ward_segment" title="Permalink to this definition">¶</a></dt>
+<dd><p>Agglomerative function based on a topology-defining graph
+and a feature matrix.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><p class="first"><strong>G</strong> : graph object</p>
+<blockquote>
+<div><p>the input graph (a topological graph essentially)</p>
+</div></blockquote>
+<p><strong>feature</strong> : array of shape (G.V,dim_feature)</p>
+<blockquote>
+<div><p>some vectorial information related to the graph vertices</p>
+</div></blockquote>
+<p><strong>stop</strong> : int or float, optional</p>
+<blockquote>
+<div><p>the stopping crterion.  if stop==-1, then no stopping criterion is used</p>
+</div></blockquote>
+<p><strong>qmax</strong> : int, optional</p>
+<blockquote>
+<div><p>the maximum number of desired clusters (in the limit of the stopping
+criterion)</p>
+</div></blockquote>
+<p><strong>verbose</strong> : bool, optional</p>
+<blockquote>
+<div><p>If True, print diagnostic information</p>
+</div></blockquote>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first">u: array of shape (G.V):</p>
+<blockquote>
+<div><p>a labelling of the graph vertices according to the criterion</p>
+</div></blockquote>
+<p>cost: array of shape (G.V - 1)</p>
+<blockquote class="last">
+<div><p>the cost of each merge step during the clustering procedure</p>
+</div></blockquote>
+</td>
+</tr>
+</tbody>
+</table>
+<p class="rubric">Notes</p>
+<p>A euclidean distance is used in the feature space</p>
+<p>Caveat : when the number of cc in G (nbcc) is greter than qmax, u contains
+nbcc values, not qmax !</p>
+</dd></dl>
+
+</div>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../../genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="../../py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li class="right" >
+          <a href="nipy.algorithms.clustering.imm.html" title="algorithms.clustering.imm"
+             >next</a> |</li>
+        <li class="right" >
+          <a href="nipy.algorithms.clustering.gmm.html" title="algorithms.clustering.gmm"
+             >previous</a> |</li>
+  <li><a href="../../index.html">NIPY home</a> |&nbsp;</li>
+
+          <li class="nav-item nav-item-1"><a href="../../documentation.html" >NIPY documentation</a> &#187;</li>
+          <li class="nav-item nav-item-2"><a href="../index.html" >API</a> &#187;</li> 
+      </ul>
+    </div>
+    <div class="footer" role="contentinfo">
+        &#169; Copyright 2005-2017, Neuroimaging in Python team.
+      Last updated on Jul 08, 2017.
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.6.3.
+    </div>
+  </body>
+</html>

@@ -1,0 +1,1116 @@
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>Neuroimaging in Python &#8212; NIPY Documentation</title>
+    <link rel="stylesheet" href="../../_static/nipy.css" type="text/css" />
+    <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '../../',
+        VERSION:     '0.5.0.dev',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true,
+        SOURCELINK_SUFFIX: '.txt'
+      };
+    </script>
+    <script type="text/javascript" src="../../_static/jquery.js"></script>
+    <script type="text/javascript" src="../../_static/underscore.js"></script>
+    <script type="text/javascript" src="../../_static/doctools.js"></script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+    <link rel="next" title="algorithms.statistics.mixed_effects_stat" href="nipy.algorithms.statistics.mixed_effects_stat.html" />
+    <link rel="prev" title="algorithms.statistics.empirical_pvalue" href="nipy.algorithms.statistics.empirical_pvalue.html" />
+  <meta name="keywords" content="nipy, neuroimaging, python, neuroscience, time
+				 series">
+
+  </head>
+  <body>
+<div style="background-color: white; text-align: left; padding: 10px 10px 15px 15px">
+ <a href="../../index.html">
+  <img src="../../_static/reggie2.png" alt="NIPY logo"  border="0" />
+</div>
+
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../../genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="../../py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li class="right" >
+          <a href="nipy.algorithms.statistics.mixed_effects_stat.html" title="algorithms.statistics.mixed_effects_stat"
+             accesskey="N">next</a> |</li>
+        <li class="right" >
+          <a href="nipy.algorithms.statistics.empirical_pvalue.html" title="algorithms.statistics.empirical_pvalue"
+             accesskey="P">previous</a> |</li>
+  <li><a href="../../index.html">NIPY home</a> |&nbsp;</li>
+
+          <li class="nav-item nav-item-1"><a href="../../documentation.html" >NIPY documentation</a> &#187;</li>
+          <li class="nav-item nav-item-2"><a href="../index.html" accesskey="U">API</a> &#187;</li> 
+      </ul>
+    </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+
+  
+<h4> Site Navigation </h4>
+  <ul>
+    <li><a href="../../documentation.html">Documentation</a></li>
+    <li><a href="../../devel/index.html">Development</a></li>
+  </ul>
+
+<h4> NIPY Community </h4>
+  <ul class="simple">
+    <li><a class="reference external"
+	href="http://nipy.org/">Community Home</a></li>
+    <li><a class="reference external"
+	href="http://nipy.org/project-directory">NIPY Projects</a></li>
+    <li><a class="reference external"
+	href="https://mail.python.org/mailman/listinfo/neuroimaging">Mailing List</a></li>
+    <li><a class="reference external"
+	href="license.html">License</a></li>
+  </ul>
+
+<h4> Github repo </h4>
+  <ul class="simple">
+    <li><a class="reference external"
+	href="http://github.com/nipy/nipy/">Nipy Github</a></li>
+  </ul>
+
+  <h3><a href="../../index.html">Table Of Contents</a></h3>
+  <ul>
+<li><a class="reference internal" href="#">algorithms.statistics.formula.formulae</a><ul>
+<li><a class="reference internal" href="#module-algorithms-statistics-formula-formulae">Module: <code class="docutils literal"><span class="pre">algorithms.statistics.formula.formulae</span></code></a><ul>
+<li><a class="reference internal" href="#formula-objects">Formula objects</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#classes">Classes</a><ul>
+<li><a class="reference internal" href="#beta"><code class="docutils literal"><span class="pre">Beta</span></code></a></li>
+<li><a class="reference internal" href="#factor"><code class="docutils literal"><span class="pre">Factor</span></code></a></li>
+<li><a class="reference internal" href="#factorterm"><code class="docutils literal"><span class="pre">FactorTerm</span></code></a></li>
+<li><a class="reference internal" href="#formula"><code class="docutils literal"><span class="pre">Formula</span></code></a></li>
+<li><a class="reference internal" href="#randomeffects"><code class="docutils literal"><span class="pre">RandomEffects</span></code></a></li>
+<li><a class="reference internal" href="#term"><code class="docutils literal"><span class="pre">Term</span></code></a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#functions">Functions</a></li>
+</ul>
+</li>
+</ul>
+
+  <h4>Previous topic</h4>
+  <p class="topless"><a href="nipy.algorithms.statistics.empirical_pvalue.html"
+                        title="previous chapter">algorithms.statistics.empirical_pvalue</a></p>
+  <h4>Next topic</h4>
+  <p class="topless"><a href="nipy.algorithms.statistics.mixed_effects_stat.html"
+                        title="next chapter">algorithms.statistics.mixed_effects_stat</a></p>
+  <div role="note" aria-label="source link">
+    <h3>This Page</h3>
+    <ul class="this-page-menu">
+      <li><a href="../../_sources/api/generated/nipy.algorithms.statistics.formula.formulae.rst.txt"
+            rel="nofollow">Show Source</a></li>
+    </ul>
+   </div>
+
+<div id="searchbox-ml" style="display: none">
+  <h3>Search mailing list archive</h3>
+  <script type="text/javascript">
+    function mlsearch(curobj)
+    {
+    curobj.q.value="site:http://mail.python.org/pipermail/neuroimaging/ "+curobj.userquery.value
+    }
+  </script>
+  <form action="http://www.google.com/search" method="get" onSubmit="mlsearch(this)">
+    <input name="userquery" size="13" type="text" /> <input type="submit" value="Go" />
+    <input name="q" type="hidden" />
+  </form>
+</div>
+  
+<div id="searchbox-site" style="display: none">
+  <h3>Search this site</h3>
+    <form class="search" action="../../search.html" method="get">
+      <input type="text" name="q" size="13" />
+      <input type="submit" value="Go" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+    <p class="searchtip" style="font-size: 90%">
+    </p>
+</div>
+<script type="text/javascript">$('#searchbox-ml').show(0);</script>
+<script type="text/javascript">$('#searchbox-site').show(0);</script>
+
+
+        </div>
+      </div>
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <div class="section" id="algorithms-statistics-formula-formulae">
+<h1>algorithms.statistics.formula.formulae<a class="headerlink" href="#algorithms-statistics-formula-formulae" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="module-algorithms-statistics-formula-formulae">
+<h2>Module: <code class="xref py py-mod docutils literal"><span class="pre">algorithms.statistics.formula.formulae</span></code><a class="headerlink" href="#module-algorithms-statistics-formula-formulae" title="Permalink to this headline">¶</a></h2>
+<p>Inheritance diagram for <code class="docutils literal"><span class="pre">nipy.algorithms.statistics.formula.formulae</span></code>:</p>
+<img src="../../_images/inheritance-cdf7303df3f27b7d59b408b17237a55f40912aae.png" alt="Inheritance diagram of nipy.algorithms.statistics.formula.formulae" usemap="#inheritance6435da5321" class="inheritance"/>
+<map id="inheritance6435da5321" name="inheritance6435da5321">
+<area shape="rect" id="node1" title="A parent class for atomic things. An atom is an expression with no subexpressions." alt="" coords="167,88,238,103"/>
+<area shape="rect" id="node4" title="A parent class for object which are both atoms and Exprs." alt="" coords="295,88,385,103"/>
+<area shape="rect" id="node2" title="Base class for all objects in SymPy." alt="" coords="22,88,91,103"/>
+<area shape="rect" id="node5" title="Base class for algebraic expressions." alt="" coords="170,117,235,132"/>
+<area shape="rect" id="node8" title="A boolean object is an object for which logic operations make sense." alt="" coords="295,60,385,75"/>
+<area shape="rect" id="node3" title="Mixin class adding evalf capabililty." alt="" coords="13,117,100,132"/>
+<area shape="rect" id="node7" title="Assumptions:" alt="" coords="412,74,497,89"/>
+<area shape="rect" id="node6" title="Dummy symbols are each unique, even if they have the same name:" alt="" coords="529,60,615,75"/>
+<area shape="rect" id="node9" href="#nipy.algorithms.statistics.formula.formulae.Beta" target="_top" title="A symbol tied to a Term `term`" alt="" coords="659,60,752,75"/>
+<area shape="rect" id="node13" href="#nipy.algorithms.statistics.formula.formulae.Term" target="_top" title="A sympy.Symbol type to represent a term an a regression model" alt="" coords="524,88,620,103"/>
+<area shape="rect" id="node10" href="#nipy.algorithms.statistics.formula.formulae.Factor" target="_top" title="A qualitative variable in a regression model" alt="" coords="153,3,253,18"/>
+<area shape="rect" id="node11" href="#nipy.algorithms.statistics.formula.formulae.Formula" target="_top" title="A Formula is a model for a mean in a regression model." alt="" coords="3,17,110,32"/>
+<area shape="rect" id="node14" href="#nipy.algorithms.statistics.formula.formulae.RandomEffects" target="_top" title="Covariance matrices for common random effects analyses." alt="" coords="137,31,268,46"/>
+<area shape="rect" id="node12" href="#nipy.algorithms.statistics.formula.formulae.FactorTerm" target="_top" title="Boolean Term derived from a Factor." alt="" coords="647,88,765,103"/>
+</map>
+<span class="target" id="module-nipy.algorithms.statistics.formula.formulae"></span><div class="section" id="formula-objects">
+<h3>Formula objects<a class="headerlink" href="#formula-objects" title="Permalink to this headline">¶</a></h3>
+<p>A formula is basically a sympy expression for the mean of something of
+the form:</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">mean</span> <span class="o">=</span> <span class="nb">sum</span><span class="p">([</span><span class="n">Beta</span><span class="p">(</span><span class="n">e</span><span class="p">)</span><span class="o">*</span><span class="n">e</span> <span class="k">for</span> <span class="n">e</span> <span class="ow">in</span> <span class="n">expr</span><span class="p">])</span>
+</pre></div>
+</div>
+<p>Or, a linear combination of sympy expressions, with each one multiplied
+by its own “Beta”. The elements of expr can be instances of Term (for a
+linear regression formula, they would all be instances of Term). But, in
+general, there might be some other parameters (i.e. sympy.Symbol
+instances) that are not Terms.</p>
+<p>The design matrix is made up of columns that are the derivatives of mean
+with respect to everything that is not a Term, evaluted at a recarray
+that has field names given by [str(t) for t in self.terms].</p>
+<p>For those familiar with R’s formula syntax, if we wanted a design matrix
+like the following:</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="o">&gt;</span> <span class="n">s</span><span class="o">.</span><span class="n">table</span> <span class="o">=</span> <span class="n">read</span><span class="o">.</span><span class="n">table</span><span class="p">(</span><span class="s2">&quot;http://www-stat.stanford.edu/~jtaylo/courses/stats191/data/supervisor.table&quot;</span><span class="p">,</span> <span class="n">header</span><span class="o">=</span><span class="n">T</span><span class="p">)</span>
+<span class="o">&gt;</span> <span class="n">d</span> <span class="o">=</span> <span class="n">model</span><span class="o">.</span><span class="n">matrix</span><span class="p">(</span><span class="n">lm</span><span class="p">(</span><span class="n">Y</span> <span class="o">~</span> <span class="n">X1</span><span class="o">*</span><span class="n">X3</span><span class="p">,</span> <span class="n">s</span><span class="o">.</span><span class="n">table</span><span class="p">)</span>
+<span class="p">)</span>
+<span class="o">&gt;</span> <span class="n">d</span>
+   <span class="p">(</span><span class="n">Intercept</span><span class="p">)</span> <span class="n">X1</span> <span class="n">X3</span> <span class="n">X1</span><span class="p">:</span><span class="n">X3</span>
+<span class="mi">1</span>            <span class="mi">1</span> <span class="mi">51</span> <span class="mi">39</span>  <span class="mi">1989</span>
+<span class="mi">2</span>            <span class="mi">1</span> <span class="mi">64</span> <span class="mi">54</span>  <span class="mi">3456</span>
+<span class="mi">3</span>            <span class="mi">1</span> <span class="mi">70</span> <span class="mi">69</span>  <span class="mi">4830</span>
+<span class="mi">4</span>            <span class="mi">1</span> <span class="mi">63</span> <span class="mi">47</span>  <span class="mi">2961</span>
+<span class="mi">5</span>            <span class="mi">1</span> <span class="mi">78</span> <span class="mi">66</span>  <span class="mi">5148</span>
+<span class="mi">6</span>            <span class="mi">1</span> <span class="mi">55</span> <span class="mi">44</span>  <span class="mi">2420</span>
+<span class="mi">7</span>            <span class="mi">1</span> <span class="mi">67</span> <span class="mi">56</span>  <span class="mi">3752</span>
+<span class="mi">8</span>            <span class="mi">1</span> <span class="mi">75</span> <span class="mi">55</span>  <span class="mi">4125</span>
+<span class="mi">9</span>            <span class="mi">1</span> <span class="mi">82</span> <span class="mi">67</span>  <span class="mi">5494</span>
+<span class="mi">10</span>           <span class="mi">1</span> <span class="mi">61</span> <span class="mi">47</span>  <span class="mi">2867</span>
+<span class="mi">11</span>           <span class="mi">1</span> <span class="mi">53</span> <span class="mi">58</span>  <span class="mi">3074</span>
+<span class="mi">12</span>           <span class="mi">1</span> <span class="mi">60</span> <span class="mi">39</span>  <span class="mi">2340</span>
+<span class="mi">13</span>           <span class="mi">1</span> <span class="mi">62</span> <span class="mi">42</span>  <span class="mi">2604</span>
+<span class="mi">14</span>           <span class="mi">1</span> <span class="mi">83</span> <span class="mi">45</span>  <span class="mi">3735</span>
+<span class="mi">15</span>           <span class="mi">1</span> <span class="mi">77</span> <span class="mi">72</span>  <span class="mi">5544</span>
+<span class="mi">16</span>           <span class="mi">1</span> <span class="mi">90</span> <span class="mi">72</span>  <span class="mi">6480</span>
+<span class="mi">17</span>           <span class="mi">1</span> <span class="mi">85</span> <span class="mi">69</span>  <span class="mi">5865</span>
+<span class="mi">18</span>           <span class="mi">1</span> <span class="mi">60</span> <span class="mi">75</span>  <span class="mi">4500</span>
+<span class="mi">19</span>           <span class="mi">1</span> <span class="mi">70</span> <span class="mi">57</span>  <span class="mi">3990</span>
+<span class="mi">20</span>           <span class="mi">1</span> <span class="mi">58</span> <span class="mi">54</span>  <span class="mi">3132</span>
+<span class="mi">21</span>           <span class="mi">1</span> <span class="mi">40</span> <span class="mi">34</span>  <span class="mi">1360</span>
+<span class="mi">22</span>           <span class="mi">1</span> <span class="mi">61</span> <span class="mi">62</span>  <span class="mi">3782</span>
+<span class="mi">23</span>           <span class="mi">1</span> <span class="mi">66</span> <span class="mi">50</span>  <span class="mi">3300</span>
+<span class="mi">24</span>           <span class="mi">1</span> <span class="mi">37</span> <span class="mi">58</span>  <span class="mi">2146</span>
+<span class="mi">25</span>           <span class="mi">1</span> <span class="mi">54</span> <span class="mi">48</span>  <span class="mi">2592</span>
+<span class="mi">26</span>           <span class="mi">1</span> <span class="mi">77</span> <span class="mi">63</span>  <span class="mi">4851</span>
+<span class="mi">27</span>           <span class="mi">1</span> <span class="mi">75</span> <span class="mi">74</span>  <span class="mi">5550</span>
+<span class="mi">28</span>           <span class="mi">1</span> <span class="mi">57</span> <span class="mi">45</span>  <span class="mi">2565</span>
+<span class="mi">29</span>           <span class="mi">1</span> <span class="mi">85</span> <span class="mi">71</span>  <span class="mi">6035</span>
+<span class="mi">30</span>           <span class="mi">1</span> <span class="mi">82</span> <span class="mi">59</span>  <span class="mi">4838</span>
+<span class="n">attr</span><span class="p">(,</span><span class="s2">&quot;assign&quot;</span><span class="p">)</span>
+<span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="mi">0</span> <span class="mi">1</span> <span class="mi">2</span> <span class="mi">3</span>
+<span class="o">&gt;</span>
+</pre></div>
+</div>
+<p>With the Formula, it looks like this:</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">r</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">rec</span><span class="o">.</span><span class="n">array</span><span class="p">([</span>
+<span class="gp">... </span>    <span class="p">(</span><span class="mi">43</span><span class="p">,</span> <span class="mi">51</span><span class="p">,</span> <span class="mi">30</span><span class="p">,</span> <span class="mi">39</span><span class="p">,</span> <span class="mi">61</span><span class="p">,</span> <span class="mi">92</span><span class="p">,</span> <span class="mi">45</span><span class="p">),</span> <span class="p">(</span><span class="mi">63</span><span class="p">,</span> <span class="mi">64</span><span class="p">,</span> <span class="mi">51</span><span class="p">,</span> <span class="mi">54</span><span class="p">,</span> <span class="mi">63</span><span class="p">,</span> <span class="mi">73</span><span class="p">,</span> <span class="mi">47</span><span class="p">),</span> 
+<span class="gp">... </span>    <span class="p">(</span><span class="mi">71</span><span class="p">,</span> <span class="mi">70</span><span class="p">,</span> <span class="mi">68</span><span class="p">,</span> <span class="mi">69</span><span class="p">,</span> <span class="mi">76</span><span class="p">,</span> <span class="mi">86</span><span class="p">,</span> <span class="mi">48</span><span class="p">),</span> <span class="p">(</span><span class="mi">61</span><span class="p">,</span> <span class="mi">63</span><span class="p">,</span> <span class="mi">45</span><span class="p">,</span> <span class="mi">47</span><span class="p">,</span> <span class="mi">54</span><span class="p">,</span> <span class="mi">84</span><span class="p">,</span> <span class="mi">35</span><span class="p">),</span>
+<span class="gp">... </span>    <span class="p">(</span><span class="mi">81</span><span class="p">,</span> <span class="mi">78</span><span class="p">,</span> <span class="mi">56</span><span class="p">,</span> <span class="mi">66</span><span class="p">,</span> <span class="mi">71</span><span class="p">,</span> <span class="mi">83</span><span class="p">,</span> <span class="mi">47</span><span class="p">),</span> <span class="p">(</span><span class="mi">43</span><span class="p">,</span> <span class="mi">55</span><span class="p">,</span> <span class="mi">49</span><span class="p">,</span> <span class="mi">44</span><span class="p">,</span> <span class="mi">54</span><span class="p">,</span> <span class="mi">49</span><span class="p">,</span> <span class="mi">34</span><span class="p">),</span>
+<span class="gp">... </span>    <span class="p">(</span><span class="mi">58</span><span class="p">,</span> <span class="mi">67</span><span class="p">,</span> <span class="mi">42</span><span class="p">,</span> <span class="mi">56</span><span class="p">,</span> <span class="mi">66</span><span class="p">,</span> <span class="mi">68</span><span class="p">,</span> <span class="mi">35</span><span class="p">),</span> <span class="p">(</span><span class="mi">71</span><span class="p">,</span> <span class="mi">75</span><span class="p">,</span> <span class="mi">50</span><span class="p">,</span> <span class="mi">55</span><span class="p">,</span> <span class="mi">70</span><span class="p">,</span> <span class="mi">66</span><span class="p">,</span> <span class="mi">41</span><span class="p">),</span>
+<span class="gp">... </span>    <span class="p">(</span><span class="mi">72</span><span class="p">,</span> <span class="mi">82</span><span class="p">,</span> <span class="mi">72</span><span class="p">,</span> <span class="mi">67</span><span class="p">,</span> <span class="mi">71</span><span class="p">,</span> <span class="mi">83</span><span class="p">,</span> <span class="mi">31</span><span class="p">),</span> <span class="p">(</span><span class="mi">67</span><span class="p">,</span> <span class="mi">61</span><span class="p">,</span> <span class="mi">45</span><span class="p">,</span> <span class="mi">47</span><span class="p">,</span> <span class="mi">62</span><span class="p">,</span> <span class="mi">80</span><span class="p">,</span> <span class="mi">41</span><span class="p">),</span>
+<span class="gp">... </span>    <span class="p">(</span><span class="mi">64</span><span class="p">,</span> <span class="mi">53</span><span class="p">,</span> <span class="mi">53</span><span class="p">,</span> <span class="mi">58</span><span class="p">,</span> <span class="mi">58</span><span class="p">,</span> <span class="mi">67</span><span class="p">,</span> <span class="mi">34</span><span class="p">),</span> <span class="p">(</span><span class="mi">67</span><span class="p">,</span> <span class="mi">60</span><span class="p">,</span> <span class="mi">47</span><span class="p">,</span> <span class="mi">39</span><span class="p">,</span> <span class="mi">59</span><span class="p">,</span> <span class="mi">74</span><span class="p">,</span> <span class="mi">41</span><span class="p">),</span>
+<span class="gp">... </span>    <span class="p">(</span><span class="mi">69</span><span class="p">,</span> <span class="mi">62</span><span class="p">,</span> <span class="mi">57</span><span class="p">,</span> <span class="mi">42</span><span class="p">,</span> <span class="mi">55</span><span class="p">,</span> <span class="mi">63</span><span class="p">,</span> <span class="mi">25</span><span class="p">),</span> <span class="p">(</span><span class="mi">68</span><span class="p">,</span> <span class="mi">83</span><span class="p">,</span> <span class="mi">83</span><span class="p">,</span> <span class="mi">45</span><span class="p">,</span> <span class="mi">59</span><span class="p">,</span> <span class="mi">77</span><span class="p">,</span> <span class="mi">35</span><span class="p">),</span>
+<span class="gp">... </span>    <span class="p">(</span><span class="mi">77</span><span class="p">,</span> <span class="mi">77</span><span class="p">,</span> <span class="mi">54</span><span class="p">,</span> <span class="mi">72</span><span class="p">,</span> <span class="mi">79</span><span class="p">,</span> <span class="mi">77</span><span class="p">,</span> <span class="mi">46</span><span class="p">),</span> <span class="p">(</span><span class="mi">81</span><span class="p">,</span> <span class="mi">90</span><span class="p">,</span> <span class="mi">50</span><span class="p">,</span> <span class="mi">72</span><span class="p">,</span> <span class="mi">60</span><span class="p">,</span> <span class="mi">54</span><span class="p">,</span> <span class="mi">36</span><span class="p">),</span>
+<span class="gp">... </span>    <span class="p">(</span><span class="mi">74</span><span class="p">,</span> <span class="mi">85</span><span class="p">,</span> <span class="mi">64</span><span class="p">,</span> <span class="mi">69</span><span class="p">,</span> <span class="mi">79</span><span class="p">,</span> <span class="mi">79</span><span class="p">,</span> <span class="mi">63</span><span class="p">),</span> <span class="p">(</span><span class="mi">65</span><span class="p">,</span> <span class="mi">60</span><span class="p">,</span> <span class="mi">65</span><span class="p">,</span> <span class="mi">75</span><span class="p">,</span> <span class="mi">55</span><span class="p">,</span> <span class="mi">80</span><span class="p">,</span> <span class="mi">60</span><span class="p">),</span>
+<span class="gp">... </span>    <span class="p">(</span><span class="mi">65</span><span class="p">,</span> <span class="mi">70</span><span class="p">,</span> <span class="mi">46</span><span class="p">,</span> <span class="mi">57</span><span class="p">,</span> <span class="mi">75</span><span class="p">,</span> <span class="mi">85</span><span class="p">,</span> <span class="mi">46</span><span class="p">),</span> <span class="p">(</span><span class="mi">50</span><span class="p">,</span> <span class="mi">58</span><span class="p">,</span> <span class="mi">68</span><span class="p">,</span> <span class="mi">54</span><span class="p">,</span> <span class="mi">64</span><span class="p">,</span> <span class="mi">78</span><span class="p">,</span> <span class="mi">52</span><span class="p">),</span>
+<span class="gp">... </span>    <span class="p">(</span><span class="mi">50</span><span class="p">,</span> <span class="mi">40</span><span class="p">,</span> <span class="mi">33</span><span class="p">,</span> <span class="mi">34</span><span class="p">,</span> <span class="mi">43</span><span class="p">,</span> <span class="mi">64</span><span class="p">,</span> <span class="mi">33</span><span class="p">),</span> <span class="p">(</span><span class="mi">64</span><span class="p">,</span> <span class="mi">61</span><span class="p">,</span> <span class="mi">52</span><span class="p">,</span> <span class="mi">62</span><span class="p">,</span> <span class="mi">66</span><span class="p">,</span> <span class="mi">80</span><span class="p">,</span> <span class="mi">41</span><span class="p">),</span>
+<span class="gp">... </span>    <span class="p">(</span><span class="mi">53</span><span class="p">,</span> <span class="mi">66</span><span class="p">,</span> <span class="mi">52</span><span class="p">,</span> <span class="mi">50</span><span class="p">,</span> <span class="mi">63</span><span class="p">,</span> <span class="mi">80</span><span class="p">,</span> <span class="mi">37</span><span class="p">),</span> <span class="p">(</span><span class="mi">40</span><span class="p">,</span> <span class="mi">37</span><span class="p">,</span> <span class="mi">42</span><span class="p">,</span> <span class="mi">58</span><span class="p">,</span> <span class="mi">50</span><span class="p">,</span> <span class="mi">57</span><span class="p">,</span> <span class="mi">49</span><span class="p">),</span>
+<span class="gp">... </span>    <span class="p">(</span><span class="mi">63</span><span class="p">,</span> <span class="mi">54</span><span class="p">,</span> <span class="mi">42</span><span class="p">,</span> <span class="mi">48</span><span class="p">,</span> <span class="mi">66</span><span class="p">,</span> <span class="mi">75</span><span class="p">,</span> <span class="mi">33</span><span class="p">),</span> <span class="p">(</span><span class="mi">66</span><span class="p">,</span> <span class="mi">77</span><span class="p">,</span> <span class="mi">66</span><span class="p">,</span> <span class="mi">63</span><span class="p">,</span> <span class="mi">88</span><span class="p">,</span> <span class="mi">76</span><span class="p">,</span> <span class="mi">72</span><span class="p">),</span>
+<span class="gp">... </span>    <span class="p">(</span><span class="mi">78</span><span class="p">,</span> <span class="mi">75</span><span class="p">,</span> <span class="mi">58</span><span class="p">,</span> <span class="mi">74</span><span class="p">,</span> <span class="mi">80</span><span class="p">,</span> <span class="mi">78</span><span class="p">,</span> <span class="mi">49</span><span class="p">),</span> <span class="p">(</span><span class="mi">48</span><span class="p">,</span> <span class="mi">57</span><span class="p">,</span> <span class="mi">44</span><span class="p">,</span> <span class="mi">45</span><span class="p">,</span> <span class="mi">51</span><span class="p">,</span> <span class="mi">83</span><span class="p">,</span> <span class="mi">38</span><span class="p">),</span>
+<span class="gp">... </span>    <span class="p">(</span><span class="mi">85</span><span class="p">,</span> <span class="mi">85</span><span class="p">,</span> <span class="mi">71</span><span class="p">,</span> <span class="mi">71</span><span class="p">,</span> <span class="mi">77</span><span class="p">,</span> <span class="mi">74</span><span class="p">,</span> <span class="mi">55</span><span class="p">),</span> <span class="p">(</span><span class="mi">82</span><span class="p">,</span> <span class="mi">82</span><span class="p">,</span> <span class="mi">39</span><span class="p">,</span> <span class="mi">59</span><span class="p">,</span> <span class="mi">64</span><span class="p">,</span> <span class="mi">78</span><span class="p">,</span> <span class="mi">39</span><span class="p">)],</span>
+<span class="gp">... </span>             <span class="n">dtype</span><span class="o">=</span><span class="p">[(</span><span class="s1">&#39;y&#39;</span><span class="p">,</span> <span class="s1">&#39;&lt;i8&#39;</span><span class="p">),</span> <span class="p">(</span><span class="s1">&#39;x1&#39;</span><span class="p">,</span> <span class="s1">&#39;&lt;i8&#39;</span><span class="p">),</span> <span class="p">(</span><span class="s1">&#39;x2&#39;</span><span class="p">,</span> <span class="s1">&#39;&lt;i8&#39;</span><span class="p">),</span>
+<span class="gp">... </span>                    <span class="p">(</span><span class="s1">&#39;x3&#39;</span><span class="p">,</span> <span class="s1">&#39;&lt;i8&#39;</span><span class="p">),</span> <span class="p">(</span><span class="s1">&#39;x4&#39;</span><span class="p">,</span> <span class="s1">&#39;&lt;i8&#39;</span><span class="p">),</span> <span class="p">(</span><span class="s1">&#39;x5&#39;</span><span class="p">,</span> <span class="s1">&#39;&lt;i8&#39;</span><span class="p">),</span>
+<span class="gp">... </span>                    <span class="p">(</span><span class="s1">&#39;x6&#39;</span><span class="p">,</span> <span class="s1">&#39;&lt;i8&#39;</span><span class="p">)])</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">x1</span> <span class="o">=</span> <span class="n">Term</span><span class="p">(</span><span class="s1">&#39;x1&#39;</span><span class="p">);</span> <span class="n">x3</span> <span class="o">=</span> <span class="n">Term</span><span class="p">(</span><span class="s1">&#39;x3&#39;</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">f</span> <span class="o">=</span> <span class="n">Formula</span><span class="p">([</span><span class="n">x1</span><span class="p">,</span> <span class="n">x3</span><span class="p">,</span> <span class="n">x1</span><span class="o">*</span><span class="n">x3</span><span class="p">])</span> <span class="o">+</span> <span class="n">I</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">f</span><span class="o">.</span><span class="n">mean</span>
+<span class="go">_b0*x1 + _b1*x3 + _b2*x1*x3 + _b3</span>
+</pre></div>
+</div>
+<p>The I is the “intercept” term, I have explicity not used R’s default of
+adding it to everything.</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">f</span><span class="o">.</span><span class="n">design</span><span class="p">(</span><span class="n">r</span><span class="p">)</span>  
+<span class="go">array([(51.0, 39.0, 1989.0, 1.0), (64.0, 54.0, 3456.0, 1.0),</span>
+<span class="go">       (70.0, 69.0, 4830.0, 1.0), (63.0, 47.0, 2961.0, 1.0),</span>
+<span class="go">       (78.0, 66.0, 5148.0, 1.0), (55.0, 44.0, 2420.0, 1.0),</span>
+<span class="go">       (67.0, 56.0, 3752.0, 1.0), (75.0, 55.0, 4125.0, 1.0),</span>
+<span class="go">       (82.0, 67.0, 5494.0, 1.0), (61.0, 47.0, 2867.0, 1.0),</span>
+<span class="go">       (53.0, 58.0, 3074.0, 1.0), (60.0, 39.0, 2340.0, 1.0),</span>
+<span class="go">       (62.0, 42.0, 2604.0, 1.0), (83.0, 45.0, 3735.0, 1.0),</span>
+<span class="go">       (77.0, 72.0, 5544.0, 1.0), (90.0, 72.0, 6480.0, 1.0),</span>
+<span class="go">       (85.0, 69.0, 5865.0, 1.0), (60.0, 75.0, 4500.0, 1.0),</span>
+<span class="go">       (70.0, 57.0, 3990.0, 1.0), (58.0, 54.0, 3132.0, 1.0),</span>
+<span class="go">       (40.0, 34.0, 1360.0, 1.0), (61.0, 62.0, 3782.0, 1.0),</span>
+<span class="go">       (66.0, 50.0, 3300.0, 1.0), (37.0, 58.0, 2146.0, 1.0),</span>
+<span class="go">       (54.0, 48.0, 2592.0, 1.0), (77.0, 63.0, 4851.0, 1.0),</span>
+<span class="go">       (75.0, 74.0, 5550.0, 1.0), (57.0, 45.0, 2565.0, 1.0),</span>
+<span class="go">       (85.0, 71.0, 6035.0, 1.0), (82.0, 59.0, 4838.0, 1.0)], </span>
+<span class="go">      dtype=[(&#39;x1&#39;, &#39;&lt;f8&#39;), (&#39;x3&#39;, &#39;&lt;f8&#39;), (&#39;x1*x3&#39;, &#39;&lt;f8&#39;), (&#39;1&#39;, &#39;&lt;f8&#39;)])</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="section" id="classes">
+<h2>Classes<a class="headerlink" href="#classes" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="beta">
+<h3><a class="reference internal" href="#nipy.algorithms.statistics.formula.formulae.Beta" title="nipy.algorithms.statistics.formula.formulae.Beta"><code class="xref py py-class docutils literal"><span class="pre">Beta</span></code></a><a class="headerlink" href="#beta" title="Permalink to this headline">¶</a></h3>
+<dl class="class">
+<dt id="nipy.algorithms.statistics.formula.formulae.Beta">
+<em class="property">class </em><code class="descclassname">nipy.algorithms.statistics.formula.formulae.</code><code class="descname">Beta</code><a class="headerlink" href="#nipy.algorithms.statistics.formula.formulae.Beta" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal"><span class="pre">sympy.core.symbol.Dummy</span></code></p>
+<p>A symbol tied to a Term <cite>term</cite></p>
+<dl class="method">
+<dt id="nipy.algorithms.statistics.formula.formulae.Beta.__init__">
+<code class="descname">__init__</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#nipy.algorithms.statistics.formula.formulae.Beta.__init__" title="Permalink to this definition">¶</a></dt>
+<dd><p>x.__init__(…) initializes x; see help(type(x)) for signature</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="nipy.algorithms.statistics.formula.formulae.Beta.default_assumptions">
+<code class="descname">default_assumptions</code><em class="property"> = {}</em><a class="headerlink" href="#nipy.algorithms.statistics.formula.formulae.Beta.default_assumptions" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+</div>
+<div class="section" id="factor">
+<h3><a class="reference internal" href="#nipy.algorithms.statistics.formula.formulae.Factor" title="nipy.algorithms.statistics.formula.formulae.Factor"><code class="xref py py-class docutils literal"><span class="pre">Factor</span></code></a><a class="headerlink" href="#factor" title="Permalink to this headline">¶</a></h3>
+<dl class="class">
+<dt id="nipy.algorithms.statistics.formula.formulae.Factor">
+<em class="property">class </em><code class="descclassname">nipy.algorithms.statistics.formula.formulae.</code><code class="descname">Factor</code><span class="sig-paren">(</span><em>name</em>, <em>levels</em>, <em>char='b'</em><span class="sig-paren">)</span><a class="headerlink" href="#nipy.algorithms.statistics.formula.formulae.Factor" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="#nipy.algorithms.statistics.formula.formulae.Formula" title="nipy.algorithms.statistics.formula.formulae.Formula"><code class="xref py py-class docutils literal"><span class="pre">nipy.algorithms.statistics.formula.formulae.Formula</span></code></a></p>
+<p>A qualitative variable in a regression model</p>
+<p>A Factor is similar to R’s factor. The levels of the Factor can be
+either strings or ints.</p>
+<dl class="method">
+<dt id="nipy.algorithms.statistics.formula.formulae.Factor.__init__">
+<code class="descname">__init__</code><span class="sig-paren">(</span><em>name</em>, <em>levels</em>, <em>char='b'</em><span class="sig-paren">)</span><a class="headerlink" href="#nipy.algorithms.statistics.formula.formulae.Factor.__init__" title="Permalink to this definition">¶</a></dt>
+<dd><p>Initialize Factor</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><p class="first"><strong>name</strong> : str</p>
+<p><strong>levels</strong> : [str or int]</p>
+<blockquote>
+<div><p>A sequence of strings or ints.</p>
+</div></blockquote>
+<p><strong>char</strong> : str, optional</p>
+<blockquote class="last">
+<div><p>prefix character for regression coefficients</p>
+</div></blockquote>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="staticmethod">
+<dt id="nipy.algorithms.statistics.formula.formulae.Factor.fromcol">
+<em class="property">static </em><code class="descname">fromcol</code><span class="sig-paren">(</span><em>col</em>, <em>name</em><span class="sig-paren">)</span><a class="headerlink" href="#nipy.algorithms.statistics.formula.formulae.Factor.fromcol" title="Permalink to this definition">¶</a></dt>
+<dd><p>Create a Factor from a column array.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><p class="first"><strong>col</strong> : ndarray</p>
+<blockquote>
+<div><p>an array with ndim==1</p>
+</div></blockquote>
+<p><strong>name</strong> : str</p>
+<blockquote>
+<div><p>name of the Factor</p>
+</div></blockquote>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first last"><strong>factor</strong> : Factor</p>
+</td>
+</tr>
+</tbody>
+</table>
+<p class="rubric">Examples</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">data</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([(</span><span class="mi">3</span><span class="p">,</span><span class="s1">&#39;a&#39;</span><span class="p">),(</span><span class="mi">4</span><span class="p">,</span><span class="s1">&#39;a&#39;</span><span class="p">),(</span><span class="mi">5</span><span class="p">,</span><span class="s1">&#39;b&#39;</span><span class="p">),(</span><span class="mi">3</span><span class="p">,</span><span class="s1">&#39;b&#39;</span><span class="p">)],</span> <span class="n">np</span><span class="o">.</span><span class="n">dtype</span><span class="p">([(</span><span class="s1">&#39;x&#39;</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">float</span><span class="p">),</span> <span class="p">(</span><span class="s1">&#39;y&#39;</span><span class="p">,</span> <span class="s1">&#39;S1&#39;</span><span class="p">)]))</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">f1</span> <span class="o">=</span> <span class="n">Factor</span><span class="o">.</span><span class="n">fromcol</span><span class="p">(</span><span class="n">data</span><span class="p">[</span><span class="s1">&#39;y&#39;</span><span class="p">],</span> <span class="s1">&#39;y&#39;</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">f2</span> <span class="o">=</span> <span class="n">Factor</span><span class="o">.</span><span class="n">fromcol</span><span class="p">(</span><span class="n">data</span><span class="p">[</span><span class="s1">&#39;x&#39;</span><span class="p">],</span> <span class="s1">&#39;x&#39;</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">d</span> <span class="o">=</span> <span class="n">f1</span><span class="o">.</span><span class="n">design</span><span class="p">(</span><span class="n">data</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="nb">print</span><span class="p">(</span><span class="n">d</span><span class="o">.</span><span class="n">dtype</span><span class="o">.</span><span class="n">descr</span><span class="p">)</span>
+<span class="go">[(&#39;y_a&#39;, &#39;&lt;f8&#39;), (&#39;y_b&#39;, &#39;&lt;f8&#39;)]</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">d</span> <span class="o">=</span> <span class="n">f2</span><span class="o">.</span><span class="n">design</span><span class="p">(</span><span class="n">data</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="nb">print</span><span class="p">(</span><span class="n">d</span><span class="o">.</span><span class="n">dtype</span><span class="o">.</span><span class="n">descr</span><span class="p">)</span>
+<span class="go">[(&#39;x_3&#39;, &#39;&lt;f8&#39;), (&#39;x_4&#39;, &#39;&lt;f8&#39;), (&#39;x_5&#39;, &#39;&lt;f8&#39;)]</span>
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="method">
+<dt id="nipy.algorithms.statistics.formula.formulae.Factor.get_term">
+<code class="descname">get_term</code><span class="sig-paren">(</span><em>level</em><span class="sig-paren">)</span><a class="headerlink" href="#nipy.algorithms.statistics.formula.formulae.Factor.get_term" title="Permalink to this definition">¶</a></dt>
+<dd><p>Retrieve a term of the Factor…</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="nipy.algorithms.statistics.formula.formulae.Factor.main_effect">
+<code class="descname">main_effect</code><a class="headerlink" href="#nipy.algorithms.statistics.formula.formulae.Factor.main_effect" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="nipy.algorithms.statistics.formula.formulae.Factor.stratify">
+<code class="descname">stratify</code><span class="sig-paren">(</span><em>variable</em><span class="sig-paren">)</span><a class="headerlink" href="#nipy.algorithms.statistics.formula.formulae.Factor.stratify" title="Permalink to this definition">¶</a></dt>
+<dd><p>Create a new variable, stratified by the levels of a Factor.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><p class="first"><strong>variable</strong> : str or simple sympy expression</p>
+<blockquote>
+<div><p>If sympy expression, then string representation must be all lower
+or upper case letters, i.e. it can be interpreted as a name.</p>
+</div></blockquote>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first"><strong>formula</strong> : Formula</p>
+<blockquote class="last">
+<div><p>Formula whose mean has one parameter named variable%d, for each
+level in self.levels</p>
+</div></blockquote>
+</td>
+</tr>
+</tbody>
+</table>
+<p class="rubric">Examples</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">f</span> <span class="o">=</span> <span class="n">Factor</span><span class="p">(</span><span class="s1">&#39;a&#39;</span><span class="p">,</span> <span class="p">[</span><span class="s1">&#39;x&#39;</span><span class="p">,</span><span class="s1">&#39;y&#39;</span><span class="p">])</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">sf</span> <span class="o">=</span> <span class="n">f</span><span class="o">.</span><span class="n">stratify</span><span class="p">(</span><span class="s1">&#39;theta&#39;</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">sf</span><span class="o">.</span><span class="n">mean</span>
+<span class="go">_theta0*a_x + _theta1*a_y</span>
+</pre></div>
+</div>
+</dd></dl>
+
+</dd></dl>
+
+</div>
+<div class="section" id="factorterm">
+<h3><a class="reference internal" href="#nipy.algorithms.statistics.formula.formulae.FactorTerm" title="nipy.algorithms.statistics.formula.formulae.FactorTerm"><code class="xref py py-class docutils literal"><span class="pre">FactorTerm</span></code></a><a class="headerlink" href="#factorterm" title="Permalink to this headline">¶</a></h3>
+<dl class="class">
+<dt id="nipy.algorithms.statistics.formula.formulae.FactorTerm">
+<em class="property">class </em><code class="descclassname">nipy.algorithms.statistics.formula.formulae.</code><code class="descname">FactorTerm</code><a class="headerlink" href="#nipy.algorithms.statistics.formula.formulae.FactorTerm" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="#nipy.algorithms.statistics.formula.formulae.Term" title="nipy.algorithms.statistics.formula.formulae.Term"><code class="xref py py-class docutils literal"><span class="pre">nipy.algorithms.statistics.formula.formulae.Term</span></code></a></p>
+<p>Boolean Term derived from a Factor.</p>
+<p>Its properties are the same as a Term except that its product with
+itself is itself.</p>
+<dl class="method">
+<dt id="nipy.algorithms.statistics.formula.formulae.FactorTerm.__init__">
+<code class="descname">__init__</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#nipy.algorithms.statistics.formula.formulae.FactorTerm.__init__" title="Permalink to this definition">¶</a></dt>
+<dd><p>x.__init__(…) initializes x; see help(type(x)) for signature</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="nipy.algorithms.statistics.formula.formulae.FactorTerm.default_assumptions">
+<code class="descname">default_assumptions</code><em class="property"> = {}</em><a class="headerlink" href="#nipy.algorithms.statistics.formula.formulae.FactorTerm.default_assumptions" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+</div>
+<div class="section" id="formula">
+<h3><a class="reference internal" href="#nipy.algorithms.statistics.formula.formulae.Formula" title="nipy.algorithms.statistics.formula.formulae.Formula"><code class="xref py py-class docutils literal"><span class="pre">Formula</span></code></a><a class="headerlink" href="#formula" title="Permalink to this headline">¶</a></h3>
+<dl class="class">
+<dt id="nipy.algorithms.statistics.formula.formulae.Formula">
+<em class="property">class </em><code class="descclassname">nipy.algorithms.statistics.formula.formulae.</code><code class="descname">Formula</code><span class="sig-paren">(</span><em>seq</em>, <em>char='b'</em><span class="sig-paren">)</span><a class="headerlink" href="#nipy.algorithms.statistics.formula.formulae.Formula" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal"><span class="pre">object</span></code></p>
+<p>A Formula is a model for a mean in a regression model.</p>
+<p>It is often given by a sequence of sympy expressions, with the mean
+model being the sum of each term multiplied by a linear regression
+coefficient.</p>
+<p>The expressions may depend on additional Symbol instances, giving a
+non-linear regression model.</p>
+<dl class="method">
+<dt id="nipy.algorithms.statistics.formula.formulae.Formula.__init__">
+<code class="descname">__init__</code><span class="sig-paren">(</span><em>seq</em>, <em>char='b'</em><span class="sig-paren">)</span><a class="headerlink" href="#nipy.algorithms.statistics.formula.formulae.Formula.__init__" title="Permalink to this definition">¶</a></dt>
+<dd><table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><p class="first"><strong>seq</strong> : sequence of <code class="docutils literal"><span class="pre">sympy.Basic</span></code></p>
+<p><strong>char</strong> : str, optional</p>
+<blockquote class="last">
+<div><p>character for regression coefficient</p>
+</div></blockquote>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="nipy.algorithms.statistics.formula.formulae.Formula.coefs">
+<code class="descname">coefs</code><a class="headerlink" href="#nipy.algorithms.statistics.formula.formulae.Formula.coefs" title="Permalink to this definition">¶</a></dt>
+<dd><p>Coefficients in the linear regression formula.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="nipy.algorithms.statistics.formula.formulae.Formula.design">
+<code class="descname">design</code><span class="sig-paren">(</span><em>input</em>, <em>param=None</em>, <em>return_float=False</em>, <em>contrasts=None</em><span class="sig-paren">)</span><a class="headerlink" href="#nipy.algorithms.statistics.formula.formulae.Formula.design" title="Permalink to this definition">¶</a></dt>
+<dd><p>Construct the design matrix, and optional contrast matrices.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><p class="first"><strong>input</strong> : np.recarray</p>
+<blockquote>
+<div><p>Recarray including fields needed to compute the Terms in
+getparams(self.design_expr).</p>
+</div></blockquote>
+<p><strong>param</strong> : None or np.recarray</p>
+<blockquote>
+<div><p>Recarray including fields that are not Terms in
+getparams(self.design_expr)</p>
+</div></blockquote>
+<p><strong>return_float</strong> : bool, optional</p>
+<blockquote>
+<div><p>If True, return a np.float array rather than a np.recarray</p>
+</div></blockquote>
+<p><strong>contrasts</strong> : None or dict, optional</p>
+<blockquote>
+<div><p>Contrasts. The items in this dictionary should be (str,
+Formula) pairs where a contrast matrix is constructed for
+each Formula by evaluating its design at the same parameters
+as self.design. If not None, then the return_float is set to True.</p>
+</div></blockquote>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first"><strong>des</strong> : 2D array</p>
+<blockquote>
+<div><p>design matrix</p>
+</div></blockquote>
+<p><strong>cmatrices</strong> : dict, optional</p>
+<blockquote class="last">
+<div><p>Dictionary with keys from <cite>contrasts</cite> input, and contrast matrices
+corresponding to <cite>des</cite> design matrix.  Returned only if <cite>contrasts</cite>
+input is not None</p>
+</div></blockquote>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="nipy.algorithms.statistics.formula.formulae.Formula.design_expr">
+<code class="descname">design_expr</code><a class="headerlink" href="#nipy.algorithms.statistics.formula.formulae.Formula.design_expr" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="nipy.algorithms.statistics.formula.formulae.Formula.dtype">
+<code class="descname">dtype</code><a class="headerlink" href="#nipy.algorithms.statistics.formula.formulae.Formula.dtype" title="Permalink to this definition">¶</a></dt>
+<dd><p>The dtype of the design matrix of the Formula.</p>
+</dd></dl>
+
+<dl class="staticmethod">
+<dt id="nipy.algorithms.statistics.formula.formulae.Formula.fromrec">
+<em class="property">static </em><code class="descname">fromrec</code><span class="sig-paren">(</span><em>rec</em>, <em>keep=[]</em>, <em>drop=[]</em><span class="sig-paren">)</span><a class="headerlink" href="#nipy.algorithms.statistics.formula.formulae.Formula.fromrec" title="Permalink to this definition">¶</a></dt>
+<dd><p>Construct Formula from recarray</p>
+<p>For fields with a string-dtype, it is assumed that these are
+qualtiatitve regressors, i.e. Factors.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><p class="first"><strong>rec: recarray</strong></p>
+<blockquote>
+<div><p>Recarray whose field names will be used to create a formula.</p>
+</div></blockquote>
+<p><strong>keep: []</strong></p>
+<blockquote>
+<div><p>Field names to explicitly keep, dropping all others.</p>
+</div></blockquote>
+<p><strong>drop: []</strong></p>
+<blockquote class="last">
+<div><p>Field names to drop.</p>
+</div></blockquote>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="nipy.algorithms.statistics.formula.formulae.Formula.mean">
+<code class="descname">mean</code><a class="headerlink" href="#nipy.algorithms.statistics.formula.formulae.Formula.mean" title="Permalink to this definition">¶</a></dt>
+<dd><p>Expression for the mean, expressed as a linear combination of terms, each with dummy variables in front.</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="nipy.algorithms.statistics.formula.formulae.Formula.params">
+<code class="descname">params</code><a class="headerlink" href="#nipy.algorithms.statistics.formula.formulae.Formula.params" title="Permalink to this definition">¶</a></dt>
+<dd><p>The parameters in the Formula.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="nipy.algorithms.statistics.formula.formulae.Formula.subs">
+<code class="descname">subs</code><span class="sig-paren">(</span><em>old</em>, <em>new</em><span class="sig-paren">)</span><a class="headerlink" href="#nipy.algorithms.statistics.formula.formulae.Formula.subs" title="Permalink to this definition">¶</a></dt>
+<dd><p>Perform a sympy substitution on all terms in the Formula</p>
+<p>Returns a new instance of the same class</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><p class="first"><strong>old</strong> : sympy.Basic</p>
+<blockquote>
+<div><p>The expression to be changed</p>
+</div></blockquote>
+<p><strong>new</strong> : sympy.Basic</p>
+<blockquote>
+<div><p>The value to change it to.</p>
+</div></blockquote>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first last"><strong>newf</strong> : Formula</p>
+</td>
+</tr>
+</tbody>
+</table>
+<p class="rubric">Examples</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">s</span><span class="p">,</span> <span class="n">t</span> <span class="o">=</span> <span class="p">[</span><span class="n">Term</span><span class="p">(</span><span class="n">l</span><span class="p">)</span> <span class="k">for</span> <span class="n">l</span> <span class="ow">in</span> <span class="s1">&#39;st&#39;</span><span class="p">]</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">f</span><span class="p">,</span> <span class="n">g</span> <span class="o">=</span> <span class="p">[</span><span class="n">sympy</span><span class="o">.</span><span class="n">Function</span><span class="p">(</span><span class="n">l</span><span class="p">)</span> <span class="k">for</span> <span class="n">l</span> <span class="ow">in</span> <span class="s1">&#39;fg&#39;</span><span class="p">]</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">form</span> <span class="o">=</span> <span class="n">Formula</span><span class="p">([</span><span class="n">f</span><span class="p">(</span><span class="n">t</span><span class="p">),</span><span class="n">g</span><span class="p">(</span><span class="n">s</span><span class="p">)])</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">newform</span> <span class="o">=</span> <span class="n">form</span><span class="o">.</span><span class="n">subs</span><span class="p">(</span><span class="n">g</span><span class="p">,</span> <span class="n">sympy</span><span class="o">.</span><span class="n">Function</span><span class="p">(</span><span class="s1">&#39;h&#39;</span><span class="p">))</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">newform</span><span class="o">.</span><span class="n">terms</span>
+<span class="go">array([f(t), h(s)], dtype=object)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">form</span><span class="o">.</span><span class="n">terms</span>
+<span class="go">array([f(t), g(s)], dtype=object)</span>
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="nipy.algorithms.statistics.formula.formulae.Formula.terms">
+<code class="descname">terms</code><a class="headerlink" href="#nipy.algorithms.statistics.formula.formulae.Formula.terms" title="Permalink to this definition">¶</a></dt>
+<dd><p>Terms in the linear regression formula.</p>
+</dd></dl>
+
+</dd></dl>
+
+</div>
+<div class="section" id="randomeffects">
+<h3><a class="reference internal" href="#nipy.algorithms.statistics.formula.formulae.RandomEffects" title="nipy.algorithms.statistics.formula.formulae.RandomEffects"><code class="xref py py-class docutils literal"><span class="pre">RandomEffects</span></code></a><a class="headerlink" href="#randomeffects" title="Permalink to this headline">¶</a></h3>
+<dl class="class">
+<dt id="nipy.algorithms.statistics.formula.formulae.RandomEffects">
+<em class="property">class </em><code class="descclassname">nipy.algorithms.statistics.formula.formulae.</code><code class="descname">RandomEffects</code><span class="sig-paren">(</span><em>seq</em>, <em>sigma=None</em>, <em>char='e'</em><span class="sig-paren">)</span><a class="headerlink" href="#nipy.algorithms.statistics.formula.formulae.RandomEffects" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="#nipy.algorithms.statistics.formula.formulae.Formula" title="nipy.algorithms.statistics.formula.formulae.Formula"><code class="xref py py-class docutils literal"><span class="pre">nipy.algorithms.statistics.formula.formulae.Formula</span></code></a></p>
+<p>Covariance matrices for common random effects analyses.</p>
+<p class="rubric">Examples</p>
+<p>Two subjects (here named 2 and 3):</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">subj</span> <span class="o">=</span> <span class="n">make_recarray</span><span class="p">([</span><span class="mi">2</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">3</span><span class="p">,</span><span class="mi">3</span><span class="p">],</span> <span class="s1">&#39;s&#39;</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">subj_factor</span> <span class="o">=</span> <span class="n">Factor</span><span class="p">(</span><span class="s1">&#39;s&#39;</span><span class="p">,</span> <span class="p">[</span><span class="mi">2</span><span class="p">,</span><span class="mi">3</span><span class="p">])</span>
+</pre></div>
+</div>
+<p>By default the covariance matrix is symbolic.  The display differs a little
+between sympy versions (hence we don’t check it in the doctests):</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">c</span> <span class="o">=</span> <span class="n">RandomEffects</span><span class="p">(</span><span class="n">subj_factor</span><span class="o">.</span><span class="n">terms</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">c</span><span class="o">.</span><span class="n">cov</span><span class="p">(</span><span class="n">subj</span><span class="p">)</span> 
+<span class="go">array([[_s2_0, _s2_0, _s2_0, 0, 0],</span>
+<span class="go">       [_s2_0, _s2_0, _s2_0, 0, 0],</span>
+<span class="go">       [_s2_0, _s2_0, _s2_0, 0, 0],</span>
+<span class="go">       [0, 0, 0, _s2_1, _s2_1],</span>
+<span class="go">       [0, 0, 0, _s2_1, _s2_1]], dtype=object)</span>
+</pre></div>
+</div>
+<p>With a numeric <cite>sigma</cite>, you get a numeric array:</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">c</span> <span class="o">=</span> <span class="n">RandomEffects</span><span class="p">(</span><span class="n">subj_factor</span><span class="o">.</span><span class="n">terms</span><span class="p">,</span> <span class="n">sigma</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([[</span><span class="mi">4</span><span class="p">,</span><span class="mi">1</span><span class="p">],[</span><span class="mi">1</span><span class="p">,</span><span class="mi">6</span><span class="p">]]))</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">c</span><span class="o">.</span><span class="n">cov</span><span class="p">(</span><span class="n">subj</span><span class="p">)</span>
+<span class="go">array([[ 4.,  4.,  4.,  1.,  1.],</span>
+<span class="go">       [ 4.,  4.,  4.,  1.,  1.],</span>
+<span class="go">       [ 4.,  4.,  4.,  1.,  1.],</span>
+<span class="go">       [ 1.,  1.,  1.,  6.,  6.],</span>
+<span class="go">       [ 1.,  1.,  1.,  6.,  6.]])</span>
+</pre></div>
+</div>
+<dl class="method">
+<dt id="nipy.algorithms.statistics.formula.formulae.RandomEffects.__init__">
+<code class="descname">__init__</code><span class="sig-paren">(</span><em>seq</em>, <em>sigma=None</em>, <em>char='e'</em><span class="sig-paren">)</span><a class="headerlink" href="#nipy.algorithms.statistics.formula.formulae.RandomEffects.__init__" title="Permalink to this definition">¶</a></dt>
+<dd><p>Initialize random effects instance</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><p class="first"><strong>seq</strong> : [<code class="docutils literal"><span class="pre">sympy.Basic</span></code>]</p>
+<p><strong>sigma</strong> : ndarray</p>
+<blockquote>
+<div><p>Covariance of the random effects. Defaults
+to a diagonal with entries for each random
+effect.</p>
+</div></blockquote>
+<p class="last"><strong>char</strong> : character for regression coefficient</p>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="nipy.algorithms.statistics.formula.formulae.RandomEffects.cov">
+<code class="descname">cov</code><span class="sig-paren">(</span><em>term</em>, <em>param=None</em><span class="sig-paren">)</span><a class="headerlink" href="#nipy.algorithms.statistics.formula.formulae.RandomEffects.cov" title="Permalink to this definition">¶</a></dt>
+<dd><p>Compute the covariance matrix for some given data.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><p class="first"><strong>term</strong> : np.recarray</p>
+<blockquote>
+<div><p>Recarray including fields corresponding to the Terms in
+getparams(self.design_expr).</p>
+</div></blockquote>
+<p><strong>param</strong> : np.recarray</p>
+<blockquote>
+<div><p>Recarray including fields that are not Terms in
+getparams(self.design_expr)</p>
+</div></blockquote>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first"><strong>C</strong> : ndarray</p>
+<blockquote class="last">
+<div><p>Covariance matrix implied by design and self.sigma.</p>
+</div></blockquote>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+</dd></dl>
+
+</div>
+<div class="section" id="term">
+<h3><a class="reference internal" href="#nipy.algorithms.statistics.formula.formulae.Term" title="nipy.algorithms.statistics.formula.formulae.Term"><code class="xref py py-class docutils literal"><span class="pre">Term</span></code></a><a class="headerlink" href="#term" title="Permalink to this headline">¶</a></h3>
+<dl class="class">
+<dt id="nipy.algorithms.statistics.formula.formulae.Term">
+<em class="property">class </em><code class="descclassname">nipy.algorithms.statistics.formula.formulae.</code><code class="descname">Term</code><a class="headerlink" href="#nipy.algorithms.statistics.formula.formulae.Term" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal"><span class="pre">sympy.core.symbol.Symbol</span></code></p>
+<p>A sympy.Symbol type to represent a term an a regression model</p>
+<p>Terms can be added to other sympy expressions with the single
+convention that a term plus itself returns itself.</p>
+<p>It is meant to emulate something on the right hand side of a formula
+in R. In particular, its name can be the name of a field in a
+recarray used to create a design matrix.</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">t</span> <span class="o">=</span> <span class="n">Term</span><span class="p">(</span><span class="s1">&#39;x&#39;</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">xval</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([(</span><span class="mi">3</span><span class="p">,),(</span><span class="mi">4</span><span class="p">,),(</span><span class="mi">5</span><span class="p">,)],</span> <span class="n">np</span><span class="o">.</span><span class="n">dtype</span><span class="p">([(</span><span class="s1">&#39;x&#39;</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">float</span><span class="p">)]))</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">f</span> <span class="o">=</span> <span class="n">t</span><span class="o">.</span><span class="n">formula</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">d</span> <span class="o">=</span> <span class="n">f</span><span class="o">.</span><span class="n">design</span><span class="p">(</span><span class="n">xval</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="nb">print</span><span class="p">(</span><span class="n">d</span><span class="o">.</span><span class="n">dtype</span><span class="o">.</span><span class="n">descr</span><span class="p">)</span>
+<span class="go">[(&#39;x&#39;, &#39;&lt;f8&#39;)]</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">f</span><span class="o">.</span><span class="n">design</span><span class="p">(</span><span class="n">xval</span><span class="p">,</span> <span class="n">return_float</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="go">array([ 3.,  4.,  5.])</span>
+</pre></div>
+</div>
+<dl class="method">
+<dt id="nipy.algorithms.statistics.formula.formulae.Term.__init__">
+<code class="descname">__init__</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#nipy.algorithms.statistics.formula.formulae.Term.__init__" title="Permalink to this definition">¶</a></dt>
+<dd><p>x.__init__(…) initializes x; see help(type(x)) for signature</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="nipy.algorithms.statistics.formula.formulae.Term.default_assumptions">
+<code class="descname">default_assumptions</code><em class="property"> = {}</em><a class="headerlink" href="#nipy.algorithms.statistics.formula.formulae.Term.default_assumptions" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="nipy.algorithms.statistics.formula.formulae.Term.formula">
+<code class="descname">formula</code><a class="headerlink" href="#nipy.algorithms.statistics.formula.formulae.Term.formula" title="Permalink to this definition">¶</a></dt>
+<dd><p>Return a Formula with only terms=[self].</p>
+</dd></dl>
+
+</dd></dl>
+
+</div>
+</div>
+<div class="section" id="functions">
+<h2>Functions<a class="headerlink" href="#functions" title="Permalink to this headline">¶</a></h2>
+<dl class="function">
+<dt id="nipy.algorithms.statistics.formula.formulae.contrast_from_cols_or_rows">
+<code class="descclassname">nipy.algorithms.statistics.formula.formulae.</code><code class="descname">contrast_from_cols_or_rows</code><span class="sig-paren">(</span><em>L</em>, <em>D</em>, <em>pseudo=None</em><span class="sig-paren">)</span><a class="headerlink" href="#nipy.algorithms.statistics.formula.formulae.contrast_from_cols_or_rows" title="Permalink to this definition">¶</a></dt>
+<dd><p>Construct a contrast matrix from a design matrix D</p>
+<p>(possibly with its pseudo inverse already computed)
+and a matrix L that either specifies something in
+the column space of D or the row space of D.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><p class="first"><strong>L</strong> : ndarray</p>
+<blockquote>
+<div><p>Matrix used to try and construct a contrast.</p>
+</div></blockquote>
+<p><strong>D</strong> : ndarray</p>
+<blockquote>
+<div><p>Design matrix used to create the contrast.</p>
+</div></blockquote>
+<p><strong>pseudo</strong> : None or array-like, optional</p>
+<blockquote>
+<div><p>If not None, gives pseudo-inverse of <cite>D</cite>.  Allows you to pass
+this if it is already calculated.</p>
+</div></blockquote>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first"><strong>C</strong> : ndarray</p>
+<blockquote class="last">
+<div><p>Matrix with C.shape[1] == D.shape[1] representing an estimable
+contrast.</p>
+</div></blockquote>
+</td>
+</tr>
+</tbody>
+</table>
+<p class="rubric">Notes</p>
+<p>From an n x p design matrix D and a matrix L, tries to determine a p
+x q contrast matrix C which determines a contrast of full rank,
+i.e. the n x q matrix</p>
+<p>dot(transpose(C), pinv(D))</p>
+<p>is full rank.</p>
+<p>L must satisfy either L.shape[0] == n or L.shape[1] == p.</p>
+<p>If L.shape[0] == n, then L is thought of as representing
+columns in the column space of D.</p>
+<p>If L.shape[1] == p, then L is thought of as what is known
+as a contrast matrix. In this case, this function returns an estimable
+contrast corresponding to the dot(D, L.T)</p>
+<p>This always produces a meaningful contrast, not always
+with the intended properties because q is always non-zero unless
+L is identically 0. That is, it produces a contrast that spans
+the column space of L (after projection onto the column space of D).</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="nipy.algorithms.statistics.formula.formulae.define">
+<code class="descclassname">nipy.algorithms.statistics.formula.formulae.</code><code class="descname">define</code><span class="sig-paren">(</span><em>*args</em>, <em>**kwargs</em><span class="sig-paren">)</span><a class="headerlink" href="#nipy.algorithms.statistics.formula.formulae.define" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="function">
+<dt id="nipy.algorithms.statistics.formula.formulae.getparams">
+<code class="descclassname">nipy.algorithms.statistics.formula.formulae.</code><code class="descname">getparams</code><span class="sig-paren">(</span><em>expression</em><span class="sig-paren">)</span><a class="headerlink" href="#nipy.algorithms.statistics.formula.formulae.getparams" title="Permalink to this definition">¶</a></dt>
+<dd><p>Return the parameters of an expression that are not Term 
+instances but are instances of sympy.Symbol.</p>
+<p class="rubric">Examples</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">z</span> <span class="o">=</span> <span class="p">[</span><span class="n">Term</span><span class="p">(</span><span class="n">l</span><span class="p">)</span> <span class="k">for</span> <span class="n">l</span> <span class="ow">in</span> <span class="s1">&#39;xyz&#39;</span><span class="p">]</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">f</span> <span class="o">=</span> <span class="n">Formula</span><span class="p">([</span><span class="n">x</span><span class="p">,</span><span class="n">y</span><span class="p">,</span><span class="n">z</span><span class="p">])</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">getparams</span><span class="p">(</span><span class="n">f</span><span class="p">)</span>
+<span class="go">[]</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">f</span><span class="o">.</span><span class="n">mean</span>
+<span class="go">_b0*x + _b1*y + _b2*z</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">getparams</span><span class="p">(</span><span class="n">f</span><span class="o">.</span><span class="n">mean</span><span class="p">)</span>
+<span class="go">[_b0, _b1, _b2]</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">th</span> <span class="o">=</span> <span class="n">sympy</span><span class="o">.</span><span class="n">Symbol</span><span class="p">(</span><span class="s1">&#39;theta&#39;</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">f</span><span class="o">.</span><span class="n">mean</span><span class="o">*</span><span class="n">sympy</span><span class="o">.</span><span class="n">exp</span><span class="p">(</span><span class="n">th</span><span class="p">)</span>
+<span class="go">(_b0*x + _b1*y + _b2*z)*exp(theta)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">getparams</span><span class="p">(</span><span class="n">f</span><span class="o">.</span><span class="n">mean</span><span class="o">*</span><span class="n">sympy</span><span class="o">.</span><span class="n">exp</span><span class="p">(</span><span class="n">th</span><span class="p">))</span>
+<span class="go">[_b0, _b1, _b2, theta]</span>
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="function">
+<dt id="nipy.algorithms.statistics.formula.formulae.getterms">
+<code class="descclassname">nipy.algorithms.statistics.formula.formulae.</code><code class="descname">getterms</code><span class="sig-paren">(</span><em>expression</em><span class="sig-paren">)</span><a class="headerlink" href="#nipy.algorithms.statistics.formula.formulae.getterms" title="Permalink to this definition">¶</a></dt>
+<dd><p>Return the all instances of Term in an expression.</p>
+<p class="rubric">Examples</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">z</span> <span class="o">=</span> <span class="p">[</span><span class="n">Term</span><span class="p">(</span><span class="n">l</span><span class="p">)</span> <span class="k">for</span> <span class="n">l</span> <span class="ow">in</span> <span class="s1">&#39;xyz&#39;</span><span class="p">]</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">f</span> <span class="o">=</span> <span class="n">Formula</span><span class="p">([</span><span class="n">x</span><span class="p">,</span><span class="n">y</span><span class="p">,</span><span class="n">z</span><span class="p">])</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">getterms</span><span class="p">(</span><span class="n">f</span><span class="p">)</span>
+<span class="go">[x, y, z]</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">getterms</span><span class="p">(</span><span class="n">f</span><span class="o">.</span><span class="n">mean</span><span class="p">)</span>
+<span class="go">[x, y, z]</span>
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="function">
+<dt id="nipy.algorithms.statistics.formula.formulae.is_factor">
+<code class="descclassname">nipy.algorithms.statistics.formula.formulae.</code><code class="descname">is_factor</code><span class="sig-paren">(</span><em>obj</em><span class="sig-paren">)</span><a class="headerlink" href="#nipy.algorithms.statistics.formula.formulae.is_factor" title="Permalink to this definition">¶</a></dt>
+<dd><p>Is obj a Factor?</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="nipy.algorithms.statistics.formula.formulae.is_factor_term">
+<code class="descclassname">nipy.algorithms.statistics.formula.formulae.</code><code class="descname">is_factor_term</code><span class="sig-paren">(</span><em>obj</em><span class="sig-paren">)</span><a class="headerlink" href="#nipy.algorithms.statistics.formula.formulae.is_factor_term" title="Permalink to this definition">¶</a></dt>
+<dd><p>Is obj a FactorTerm?</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="nipy.algorithms.statistics.formula.formulae.is_formula">
+<code class="descclassname">nipy.algorithms.statistics.formula.formulae.</code><code class="descname">is_formula</code><span class="sig-paren">(</span><em>obj</em><span class="sig-paren">)</span><a class="headerlink" href="#nipy.algorithms.statistics.formula.formulae.is_formula" title="Permalink to this definition">¶</a></dt>
+<dd><p>Is obj a Formula?</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="nipy.algorithms.statistics.formula.formulae.is_term">
+<code class="descclassname">nipy.algorithms.statistics.formula.formulae.</code><code class="descname">is_term</code><span class="sig-paren">(</span><em>obj</em><span class="sig-paren">)</span><a class="headerlink" href="#nipy.algorithms.statistics.formula.formulae.is_term" title="Permalink to this definition">¶</a></dt>
+<dd><p>Is obj a Term?</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="nipy.algorithms.statistics.formula.formulae.make_dummy">
+<code class="descclassname">nipy.algorithms.statistics.formula.formulae.</code><code class="descname">make_dummy</code><span class="sig-paren">(</span><em>*args</em>, <em>**kwds</em><span class="sig-paren">)</span><a class="headerlink" href="#nipy.algorithms.statistics.formula.formulae.make_dummy" title="Permalink to this definition">¶</a></dt>
+<dd><p><cite>make_dummy</cite> is deprecated!
+Please use sympy.Dummy instead of this function</p>
+<blockquote>
+<div>Make dummy variable of given name</div></blockquote>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><p class="first"><strong>name</strong> : str</p>
+<blockquote>
+<div><p>name of dummy variable</p>
+</div></blockquote>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first last"><strong>dum</strong> : <cite>Dummy</cite> instance</p>
+</td>
+</tr>
+</tbody>
+</table>
+<p class="rubric">Notes</p>
+<p>The interface to Dummy changed between 0.6.7 and 0.7.0, and we used this
+function to keep compatibility. Now we depend on sympy 0.7.0 and this
+function is obsolete.</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="nipy.algorithms.statistics.formula.formulae.make_recarray">
+<code class="descclassname">nipy.algorithms.statistics.formula.formulae.</code><code class="descname">make_recarray</code><span class="sig-paren">(</span><em>rows</em>, <em>names</em>, <em>dtypes=None</em>, <em>drop_name_dim=&lt;class nipy.utils._NoValue&gt;</em><span class="sig-paren">)</span><a class="headerlink" href="#nipy.algorithms.statistics.formula.formulae.make_recarray" title="Permalink to this definition">¶</a></dt>
+<dd><p>Create recarray from <cite>rows</cite> with field names <cite>names</cite></p>
+<p>Create a recarray with named columns from a list or ndarray of <cite>rows</cite> and
+sequence of <cite>names</cite> for the columns. If <cite>rows</cite> is an ndarray, <cite>dtypes</cite> must
+be None, otherwise we raise a ValueError. Otherwise, if <cite>dtypes</cite> is None,
+we cast the data in all columns in <cite>rows</cite> as np.float. If <cite>dtypes</cite> is not
+None, the routine uses <cite>dtypes</cite> as a dtype specifier for the output
+structured array.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><p class="first"><strong>rows: list or array</strong></p>
+<blockquote>
+<div><p>Rows that will be turned into an recarray.</p>
+</div></blockquote>
+<p><strong>names: sequence</strong></p>
+<blockquote>
+<div><p>Sequence of strings - names for the columns.</p>
+</div></blockquote>
+<p><strong>dtypes: None or sequence of str or sequence of np.dtype, optional</strong></p>
+<blockquote>
+<div><p>Used to create a np.dtype, can be sequence of np.dtype or string.</p>
+</div></blockquote>
+<p><strong>drop_name_dim</strong> : {_NoValue, False, True}, optional</p>
+<blockquote>
+<div><p>Flag for compatibility with future default behavior.  Current default
+is False.  If True, drops the length 1 dimension corresponding to the
+axis transformed into fields when converting into a recarray.  If
+_NoValue specified, gives default.  Default will change to True in the
+next version of Nipy.</p>
+</div></blockquote>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first"><strong>v</strong> : np.ndarray</p>
+<blockquote>
+<div><p>Structured array with field names given by <cite>names</cite>.</p>
+</div></blockquote>
+</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Raises:</th><td class="field-body"><p class="first"><strong>ValueError</strong></p>
+<blockquote class="last">
+<div><p><cite>dtypes</cite> not None when <cite>rows</cite> is array.</p>
+</div></blockquote>
+</td>
+</tr>
+</tbody>
+</table>
+<p class="rubric">Examples</p>
+<p>The following tests depend on machine byte order for their exact output.</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">arr</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([[</span><span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">],</span> <span class="p">[</span><span class="mi">4</span><span class="p">,</span> <span class="mi">6</span><span class="p">],</span> <span class="p">[</span><span class="mi">6</span><span class="p">,</span> <span class="mi">8</span><span class="p">]])</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">make_recarray</span><span class="p">(</span><span class="n">arr</span><span class="p">,</span> <span class="p">[</span><span class="s1">&#39;x&#39;</span><span class="p">,</span> <span class="s1">&#39;y&#39;</span><span class="p">],</span>
+<span class="gp">... </span>              <span class="n">drop_name_dim</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span> 
+<span class="go">array([(3, 4), (4, 6), (6, 8)],</span>
+<span class="go">      dtype=[(&#39;x&#39;, &#39;&lt;i8&#39;), (&#39;y&#39;, &#39;&lt;i8&#39;)])</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">make_recarray</span><span class="p">(</span><span class="n">arr</span><span class="p">,</span> <span class="p">[</span><span class="s1">&#39;x&#39;</span><span class="p">,</span> <span class="s1">&#39;y&#39;</span><span class="p">],</span>
+<span class="gp">... </span>              <span class="n">drop_name_dim</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span> 
+<span class="go">array([[(3, 4)],</span>
+<span class="go">       [(4, 6)],</span>
+<span class="go">       [(6, 8)]],</span>
+<span class="go">      dtype=[(&#39;x&#39;, &#39;&lt;i8&#39;), (&#39;y&#39;, &#39;&lt;i8&#39;)])</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">r</span> <span class="o">=</span> <span class="n">make_recarray</span><span class="p">(</span><span class="n">arr</span><span class="p">,</span> <span class="p">[</span><span class="s1">&#39;w&#39;</span><span class="p">,</span> <span class="s1">&#39;u&#39;</span><span class="p">],</span> <span class="n">drop_name_dim</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">make_recarray</span><span class="p">(</span><span class="n">r</span><span class="p">,</span> <span class="p">[</span><span class="s1">&#39;x&#39;</span><span class="p">,</span> <span class="s1">&#39;y&#39;</span><span class="p">],</span>
+<span class="gp">... </span>              <span class="n">drop_name_dim</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span> 
+<span class="go">array([(3, 4), (4, 6), (6, 8)],</span>
+<span class="go">      dtype=[(&#39;x&#39;, &#39;&lt;i8&#39;), (&#39;y&#39;, &#39;&lt;i8&#39;)])</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">make_recarray</span><span class="p">([[</span><span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">],</span> <span class="p">[</span><span class="mi">4</span><span class="p">,</span> <span class="mi">6</span><span class="p">],</span> <span class="p">[</span><span class="mi">7</span><span class="p">,</span> <span class="mi">9</span><span class="p">]],</span> <span class="s1">&#39;wv&#39;</span><span class="p">,</span>
+<span class="gp">... </span>              <span class="p">[</span><span class="n">np</span><span class="o">.</span><span class="n">float</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">int</span><span class="p">])</span>  
+<span class="go">array([(3.0, 4), (4.0, 6), (7.0, 9)],</span>
+<span class="go">      dtype=[(&#39;w&#39;, &#39;&lt;f8&#39;), (&#39;v&#39;, &#39;&lt;i8&#39;)])</span>
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="function">
+<dt id="nipy.algorithms.statistics.formula.formulae.natural_spline">
+<code class="descclassname">nipy.algorithms.statistics.formula.formulae.</code><code class="descname">natural_spline</code><span class="sig-paren">(</span><em>t</em>, <em>knots=None</em>, <em>order=3</em>, <em>intercept=False</em><span class="sig-paren">)</span><a class="headerlink" href="#nipy.algorithms.statistics.formula.formulae.natural_spline" title="Permalink to this definition">¶</a></dt>
+<dd><p>Return a Formula containing a natural spline</p>
+<p>Spline for a Term with specified <cite>knots</cite> and <cite>order</cite>.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><p class="first"><strong>t</strong> : <code class="docutils literal"><span class="pre">Term</span></code></p>
+<p><strong>knots</strong> : None or sequence, optional</p>
+<blockquote>
+<div><p>Sequence of float.  Default None (same as empty list)</p>
+</div></blockquote>
+<p><strong>order</strong> : int, optional</p>
+<blockquote>
+<div><p>Order of the spline. Defaults to a cubic (==3)</p>
+</div></blockquote>
+<p><strong>intercept</strong> : bool, optional</p>
+<blockquote>
+<div><p>If True, include a constant function in the natural
+spline. Default is False</p>
+</div></blockquote>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first"><strong>formula</strong> : Formula</p>
+<blockquote class="last">
+<div><p>A Formula with (len(knots) + order) Terms (if intercept=False,
+otherwise includes one more Term), made up of the natural spline
+functions.</p>
+</div></blockquote>
+</td>
+</tr>
+</tbody>
+</table>
+<p class="rubric">Examples</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">x</span> <span class="o">=</span> <span class="n">Term</span><span class="p">(</span><span class="s1">&#39;x&#39;</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">n</span> <span class="o">=</span> <span class="n">natural_spline</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">knots</span><span class="o">=</span><span class="p">[</span><span class="mi">1</span><span class="p">,</span><span class="mi">3</span><span class="p">,</span><span class="mi">4</span><span class="p">],</span> <span class="n">order</span><span class="o">=</span><span class="mi">3</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">xval</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mi">3</span><span class="p">,</span><span class="mi">5</span><span class="p">,</span><span class="mf">7.</span><span class="p">])</span><span class="o">.</span><span class="n">view</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">dtype</span><span class="p">([(</span><span class="s1">&#39;x&#39;</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">float</span><span class="p">)]))</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">n</span><span class="o">.</span><span class="n">design</span><span class="p">(</span><span class="n">xval</span><span class="p">,</span> <span class="n">return_float</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="go">array([[   3.,    9.,   27.,    8.,    0.,   -0.],</span>
+<span class="go">       [   5.,   25.,  125.,   64.,    8.,    1.],</span>
+<span class="go">       [   7.,   49.,  343.,  216.,   64.,   27.]])</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">d</span> <span class="o">=</span> <span class="n">n</span><span class="o">.</span><span class="n">design</span><span class="p">(</span><span class="n">xval</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="nb">print</span><span class="p">(</span><span class="n">d</span><span class="o">.</span><span class="n">dtype</span><span class="o">.</span><span class="n">descr</span><span class="p">)</span>
+<span class="go">[(&#39;ns_1(x)&#39;, &#39;&lt;f8&#39;), (&#39;ns_2(x)&#39;, &#39;&lt;f8&#39;), (&#39;ns_3(x)&#39;, &#39;&lt;f8&#39;), (&#39;ns_4(x)&#39;, &#39;&lt;f8&#39;), (&#39;ns_5(x)&#39;, &#39;&lt;f8&#39;), (&#39;ns_6(x)&#39;, &#39;&lt;f8&#39;)]</span>
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="function">
+<dt id="nipy.algorithms.statistics.formula.formulae.terms">
+<code class="descclassname">nipy.algorithms.statistics.formula.formulae.</code><code class="descname">terms</code><span class="sig-paren">(</span><em>names</em>, <em>**kwargs</em><span class="sig-paren">)</span><a class="headerlink" href="#nipy.algorithms.statistics.formula.formulae.terms" title="Permalink to this definition">¶</a></dt>
+<dd><p>Return list of terms with names given by <cite>names</cite></p>
+<p>This is just a convenience in defining a set of terms, and is the
+equivalent of <code class="docutils literal"><span class="pre">sympy.symbols</span></code> for defining symbols in sympy.</p>
+<p>We enforce the sympy 0.7.0 behavior of returning symbol “abc” from input
+“abc”, rthan than 3 symbols “a”, “b”, “c”.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><p class="first"><strong>names</strong> : str or sequence of str</p>
+<blockquote>
+<div><p>If a single str, can specify multiple <a href="#id1"><span class="problematic" id="id2">``</span></a>Term``s with string
+containing space or ‘,’ as separator.</p>
+</div></blockquote>
+<p><strong>**kwargs</strong> : keyword arguments</p>
+<blockquote>
+<div><p>keyword arguments as for <code class="docutils literal"><span class="pre">sympy.symbols</span></code></p>
+</div></blockquote>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first"><strong>ts</strong> : <code class="docutils literal"><span class="pre">Term</span></code> or tuple</p>
+<blockquote class="last">
+<div><p><code class="docutils literal"><span class="pre">Term</span></code> instance or list of <code class="docutils literal"><span class="pre">Term</span></code> instance objects named from <cite>names</cite></p>
+</div></blockquote>
+</td>
+</tr>
+</tbody>
+</table>
+<p class="rubric">Examples</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">terms</span><span class="p">((</span><span class="s1">&#39;a&#39;</span><span class="p">,</span> <span class="s1">&#39;b&#39;</span><span class="p">,</span> <span class="s1">&#39;c&#39;</span><span class="p">))</span>
+<span class="go">(a, b, c)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">terms</span><span class="p">(</span><span class="s1">&#39;a, b, c&#39;</span><span class="p">)</span>
+<span class="go">(a, b, c)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">terms</span><span class="p">(</span><span class="s1">&#39;abc&#39;</span><span class="p">)</span>
+<span class="go">abc</span>
+</pre></div>
+</div>
+</dd></dl>
+
+</div>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../../genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="../../py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li class="right" >
+          <a href="nipy.algorithms.statistics.mixed_effects_stat.html" title="algorithms.statistics.mixed_effects_stat"
+             >next</a> |</li>
+        <li class="right" >
+          <a href="nipy.algorithms.statistics.empirical_pvalue.html" title="algorithms.statistics.empirical_pvalue"
+             >previous</a> |</li>
+  <li><a href="../../index.html">NIPY home</a> |&nbsp;</li>
+
+          <li class="nav-item nav-item-1"><a href="../../documentation.html" >NIPY documentation</a> &#187;</li>
+          <li class="nav-item nav-item-2"><a href="../index.html" >API</a> &#187;</li> 
+      </ul>
+    </div>
+    <div class="footer" role="contentinfo">
+        &#169; Copyright 2005-2017, Neuroimaging in Python team.
+      Last updated on Jul 08, 2017.
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.6.3.
+    </div>
+  </body>
+</html>

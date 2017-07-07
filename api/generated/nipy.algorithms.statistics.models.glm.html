@@ -1,0 +1,247 @@
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>Neuroimaging in Python &#8212; NIPY Documentation</title>
+    <link rel="stylesheet" href="../../_static/nipy.css" type="text/css" />
+    <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '../../',
+        VERSION:     '0.5.0.dev',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true,
+        SOURCELINK_SUFFIX: '.txt'
+      };
+    </script>
+    <script type="text/javascript" src="../../_static/jquery.js"></script>
+    <script type="text/javascript" src="../../_static/underscore.js"></script>
+    <script type="text/javascript" src="../../_static/doctools.js"></script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+    <link rel="next" title="algorithms.statistics.models.model" href="nipy.algorithms.statistics.models.model.html" />
+    <link rel="prev" title="algorithms.statistics.models.family.varfuncs" href="nipy.algorithms.statistics.models.family.varfuncs.html" />
+  <meta name="keywords" content="nipy, neuroimaging, python, neuroscience, time
+				 series">
+
+  </head>
+  <body>
+<div style="background-color: white; text-align: left; padding: 10px 10px 15px 15px">
+ <a href="../../index.html">
+  <img src="../../_static/reggie2.png" alt="NIPY logo"  border="0" />
+</div>
+
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../../genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="../../py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li class="right" >
+          <a href="nipy.algorithms.statistics.models.model.html" title="algorithms.statistics.models.model"
+             accesskey="N">next</a> |</li>
+        <li class="right" >
+          <a href="nipy.algorithms.statistics.models.family.varfuncs.html" title="algorithms.statistics.models.family.varfuncs"
+             accesskey="P">previous</a> |</li>
+  <li><a href="../../index.html">NIPY home</a> |&nbsp;</li>
+
+          <li class="nav-item nav-item-1"><a href="../../documentation.html" >NIPY documentation</a> &#187;</li>
+          <li class="nav-item nav-item-2"><a href="../index.html" accesskey="U">API</a> &#187;</li> 
+      </ul>
+    </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+
+  
+<h4> Site Navigation </h4>
+  <ul>
+    <li><a href="../../documentation.html">Documentation</a></li>
+    <li><a href="../../devel/index.html">Development</a></li>
+  </ul>
+
+<h4> NIPY Community </h4>
+  <ul class="simple">
+    <li><a class="reference external"
+	href="http://nipy.org/">Community Home</a></li>
+    <li><a class="reference external"
+	href="http://nipy.org/project-directory">NIPY Projects</a></li>
+    <li><a class="reference external"
+	href="https://mail.python.org/mailman/listinfo/neuroimaging">Mailing List</a></li>
+    <li><a class="reference external"
+	href="license.html">License</a></li>
+  </ul>
+
+<h4> Github repo </h4>
+  <ul class="simple">
+    <li><a class="reference external"
+	href="http://github.com/nipy/nipy/">Nipy Github</a></li>
+  </ul>
+
+  <h3><a href="../../index.html">Table Of Contents</a></h3>
+  <ul>
+<li><a class="reference internal" href="#">algorithms.statistics.models.glm</a><ul>
+<li><a class="reference internal" href="#module-algorithms-statistics-models-glm">Module: <code class="docutils literal"><span class="pre">algorithms.statistics.models.glm</span></code></a><ul>
+<li><a class="reference internal" href="#general-linear-models">General linear models</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#model"><code class="docutils literal"><span class="pre">Model</span></code></a></li>
+</ul>
+</li>
+</ul>
+
+  <h4>Previous topic</h4>
+  <p class="topless"><a href="nipy.algorithms.statistics.models.family.varfuncs.html"
+                        title="previous chapter">algorithms.statistics.models.family.varfuncs</a></p>
+  <h4>Next topic</h4>
+  <p class="topless"><a href="nipy.algorithms.statistics.models.model.html"
+                        title="next chapter">algorithms.statistics.models.model</a></p>
+  <div role="note" aria-label="source link">
+    <h3>This Page</h3>
+    <ul class="this-page-menu">
+      <li><a href="../../_sources/api/generated/nipy.algorithms.statistics.models.glm.rst.txt"
+            rel="nofollow">Show Source</a></li>
+    </ul>
+   </div>
+
+<div id="searchbox-ml" style="display: none">
+  <h3>Search mailing list archive</h3>
+  <script type="text/javascript">
+    function mlsearch(curobj)
+    {
+    curobj.q.value="site:http://mail.python.org/pipermail/neuroimaging/ "+curobj.userquery.value
+    }
+  </script>
+  <form action="http://www.google.com/search" method="get" onSubmit="mlsearch(this)">
+    <input name="userquery" size="13" type="text" /> <input type="submit" value="Go" />
+    <input name="q" type="hidden" />
+  </form>
+</div>
+  
+<div id="searchbox-site" style="display: none">
+  <h3>Search this site</h3>
+    <form class="search" action="../../search.html" method="get">
+      <input type="text" name="q" size="13" />
+      <input type="submit" value="Go" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+    <p class="searchtip" style="font-size: 90%">
+    </p>
+</div>
+<script type="text/javascript">$('#searchbox-ml').show(0);</script>
+<script type="text/javascript">$('#searchbox-site').show(0);</script>
+
+
+        </div>
+      </div>
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <div class="section" id="algorithms-statistics-models-glm">
+<h1>algorithms.statistics.models.glm<a class="headerlink" href="#algorithms-statistics-models-glm" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="module-algorithms-statistics-models-glm">
+<h2>Module: <code class="xref py py-mod docutils literal"><span class="pre">algorithms.statistics.models.glm</span></code><a class="headerlink" href="#module-algorithms-statistics-models-glm" title="Permalink to this headline">¶</a></h2>
+<p>Inheritance diagram for <code class="docutils literal"><span class="pre">nipy.algorithms.statistics.models.glm</span></code>:</p>
+<img src="../../_images/inheritance-b70b6a9c00a0a7fbc142358603fdd838b3ddd005.png" alt="Inheritance diagram of nipy.algorithms.statistics.models.glm" usemap="#inheritance54b72dce5b" class="inheritance"/>
+<map id="inheritance54b72dce5b" name="inheritance54b72dce5b">
+<area shape="rect" id="node2" href="#nipy.algorithms.statistics.models.glm.Model" target="_top" title="models.glm.Model" alt="" coords="670,21,764,39"/>
+<area shape="rect" id="node3" href="nipy.algorithms.statistics.models.regression.html#nipy.algorithms.statistics.models.regression.WLSModel" target="_top" title="A regression model with diagonal but non&#45;identity covariance structure." alt="" coords="497,38,637,56"/>
+<area shape="rect" id="node4" href="nipy.algorithms.statistics.models.model.html#nipy.algorithms.statistics.models.model.LikelihoodModel" target="_top" title="models.model.LikelihoodModel" alt="" coords="141,38,292,56"/>
+<area shape="rect" id="node6" href="nipy.algorithms.statistics.models.regression.html#nipy.algorithms.statistics.models.regression.OLSModel" target="_top" title="A simple ordinary least squares model." alt="" coords="324,38,464,56"/>
+<area shape="rect" id="node5" href="nipy.algorithms.statistics.models.model.html#nipy.algorithms.statistics.models.model.Model" target="_top" title="A (predictive) statistical model." alt="" coords="4,38,109,56"/>
+</map>
+<span class="target" id="module-nipy.algorithms.statistics.models.glm"></span><div class="section" id="general-linear-models">
+<h3>General linear models<a class="headerlink" href="#general-linear-models" title="Permalink to this headline">¶</a></h3>
+</div>
+</div>
+<div class="section" id="model">
+<h2><a class="reference internal" href="#nipy.algorithms.statistics.models.glm.Model" title="nipy.algorithms.statistics.models.glm.Model"><code class="xref py py-class docutils literal"><span class="pre">Model</span></code></a><a class="headerlink" href="#model" title="Permalink to this headline">¶</a></h2>
+<dl class="class">
+<dt id="nipy.algorithms.statistics.models.glm.Model">
+<em class="property">class </em><code class="descclassname">nipy.algorithms.statistics.models.glm.</code><code class="descname">Model</code><span class="sig-paren">(</span><em>design</em>, <em>family=&lt;nipy.algorithms.statistics.models.family.family.Gaussian object&gt;</em><span class="sig-paren">)</span><a class="headerlink" href="#nipy.algorithms.statistics.models.glm.Model" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="nipy.algorithms.statistics.models.regression.html#nipy.algorithms.statistics.models.regression.WLSModel" title="nipy.algorithms.statistics.models.regression.WLSModel"><code class="xref py py-class docutils literal"><span class="pre">nipy.algorithms.statistics.models.regression.WLSModel</span></code></a>, <code class="xref py py-class docutils literal"><span class="pre">nipy.externals.six.Iterator</span></code></p>
+<dl class="method">
+<dt id="nipy.algorithms.statistics.models.glm.Model.__init__">
+<code class="descname">__init__</code><span class="sig-paren">(</span><em>design</em>, <em>family=&lt;nipy.algorithms.statistics.models.family.family.Gaussian object&gt;</em><span class="sig-paren">)</span><a class="headerlink" href="#nipy.algorithms.statistics.models.glm.Model.__init__" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="nipy.algorithms.statistics.models.glm.Model.cont">
+<code class="descname">cont</code><span class="sig-paren">(</span><em>tol=1e-05</em><span class="sig-paren">)</span><a class="headerlink" href="#nipy.algorithms.statistics.models.glm.Model.cont" title="Permalink to this definition">¶</a></dt>
+<dd><p>Continue iterating, or has convergence been obtained?</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="nipy.algorithms.statistics.models.glm.Model.deviance">
+<code class="descname">deviance</code><span class="sig-paren">(</span><em>Y=None</em>, <em>results=None</em>, <em>scale=1.0</em><span class="sig-paren">)</span><a class="headerlink" href="#nipy.algorithms.statistics.models.glm.Model.deviance" title="Permalink to this definition">¶</a></dt>
+<dd><p>Return (unnormalized) log-likelihood for GLM.</p>
+<p>Note that self.scale is interpreted as a variance in old_model, so
+we divide the residuals by its sqrt.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="nipy.algorithms.statistics.models.glm.Model.estimate_scale">
+<code class="descname">estimate_scale</code><span class="sig-paren">(</span><em>Y=None</em>, <em>results=None</em><span class="sig-paren">)</span><a class="headerlink" href="#nipy.algorithms.statistics.models.glm.Model.estimate_scale" title="Permalink to this definition">¶</a></dt>
+<dd><p>Return Pearson’s X^2 estimate of scale.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="nipy.algorithms.statistics.models.glm.Model.fit">
+<code class="descname">fit</code><span class="sig-paren">(</span><em>Y</em><span class="sig-paren">)</span><a class="headerlink" href="#nipy.algorithms.statistics.models.glm.Model.fit" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="nipy.algorithms.statistics.models.glm.Model.niter">
+<code class="descname">niter</code><em class="property"> = 10</em><a class="headerlink" href="#nipy.algorithms.statistics.models.glm.Model.niter" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+</div>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../../genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="../../py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li class="right" >
+          <a href="nipy.algorithms.statistics.models.model.html" title="algorithms.statistics.models.model"
+             >next</a> |</li>
+        <li class="right" >
+          <a href="nipy.algorithms.statistics.models.family.varfuncs.html" title="algorithms.statistics.models.family.varfuncs"
+             >previous</a> |</li>
+  <li><a href="../../index.html">NIPY home</a> |&nbsp;</li>
+
+          <li class="nav-item nav-item-1"><a href="../../documentation.html" >NIPY documentation</a> &#187;</li>
+          <li class="nav-item nav-item-2"><a href="../index.html" >API</a> &#187;</li> 
+      </ul>
+    </div>
+    <div class="footer" role="contentinfo">
+        &#169; Copyright 2005-2017, Neuroimaging in Python team.
+      Last updated on Jul 08, 2017.
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.6.3.
+    </div>
+  </body>
+</html>

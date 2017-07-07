@@ -1,0 +1,526 @@
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>Neuroimaging in Python &#8212; NIPY Documentation</title>
+    <link rel="stylesheet" href="../../_static/nipy.css" type="text/css" />
+    <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '../../',
+        VERSION:     '0.5.0.dev',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true,
+        SOURCELINK_SUFFIX: '.txt'
+      };
+    </script>
+    <script type="text/javascript" src="../../_static/jquery.js"></script>
+    <script type="text/javascript" src="../../_static/underscore.js"></script>
+    <script type="text/javascript" src="../../_static/doctools.js"></script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+    <link rel="next" title="algorithms.graph.graph" href="nipy.algorithms.graph.graph.html" />
+    <link rel="prev" title="algorithms.graph.field" href="nipy.algorithms.graph.field.html" />
+  <meta name="keywords" content="nipy, neuroimaging, python, neuroscience, time
+				 series">
+
+  </head>
+  <body>
+<div style="background-color: white; text-align: left; padding: 10px 10px 15px 15px">
+ <a href="../../index.html">
+  <img src="../../_static/reggie2.png" alt="NIPY logo"  border="0" />
+</div>
+
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../../genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="../../py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li class="right" >
+          <a href="nipy.algorithms.graph.graph.html" title="algorithms.graph.graph"
+             accesskey="N">next</a> |</li>
+        <li class="right" >
+          <a href="nipy.algorithms.graph.field.html" title="algorithms.graph.field"
+             accesskey="P">previous</a> |</li>
+  <li><a href="../../index.html">NIPY home</a> |&nbsp;</li>
+
+          <li class="nav-item nav-item-1"><a href="../../documentation.html" >NIPY documentation</a> &#187;</li>
+          <li class="nav-item nav-item-2"><a href="../index.html" accesskey="U">API</a> &#187;</li> 
+      </ul>
+    </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+
+  
+<h4> Site Navigation </h4>
+  <ul>
+    <li><a href="../../documentation.html">Documentation</a></li>
+    <li><a href="../../devel/index.html">Development</a></li>
+  </ul>
+
+<h4> NIPY Community </h4>
+  <ul class="simple">
+    <li><a class="reference external"
+	href="http://nipy.org/">Community Home</a></li>
+    <li><a class="reference external"
+	href="http://nipy.org/project-directory">NIPY Projects</a></li>
+    <li><a class="reference external"
+	href="https://mail.python.org/mailman/listinfo/neuroimaging">Mailing List</a></li>
+    <li><a class="reference external"
+	href="license.html">License</a></li>
+  </ul>
+
+<h4> Github repo </h4>
+  <ul class="simple">
+    <li><a class="reference external"
+	href="http://github.com/nipy/nipy/">Nipy Github</a></li>
+  </ul>
+
+  <h3><a href="../../index.html">Table Of Contents</a></h3>
+  <ul>
+<li><a class="reference internal" href="#">algorithms.graph.forest</a><ul>
+<li><a class="reference internal" href="#module-algorithms-graph-forest">Module: <code class="docutils literal"><span class="pre">algorithms.graph.forest</span></code></a></li>
+<li><a class="reference internal" href="#forest"><code class="docutils literal"><span class="pre">Forest</span></code></a></li>
+</ul>
+</li>
+</ul>
+
+  <h4>Previous topic</h4>
+  <p class="topless"><a href="nipy.algorithms.graph.field.html"
+                        title="previous chapter">algorithms.graph.field</a></p>
+  <h4>Next topic</h4>
+  <p class="topless"><a href="nipy.algorithms.graph.graph.html"
+                        title="next chapter">algorithms.graph.graph</a></p>
+  <div role="note" aria-label="source link">
+    <h3>This Page</h3>
+    <ul class="this-page-menu">
+      <li><a href="../../_sources/api/generated/nipy.algorithms.graph.forest.rst.txt"
+            rel="nofollow">Show Source</a></li>
+    </ul>
+   </div>
+
+<div id="searchbox-ml" style="display: none">
+  <h3>Search mailing list archive</h3>
+  <script type="text/javascript">
+    function mlsearch(curobj)
+    {
+    curobj.q.value="site:http://mail.python.org/pipermail/neuroimaging/ "+curobj.userquery.value
+    }
+  </script>
+  <form action="http://www.google.com/search" method="get" onSubmit="mlsearch(this)">
+    <input name="userquery" size="13" type="text" /> <input type="submit" value="Go" />
+    <input name="q" type="hidden" />
+  </form>
+</div>
+  
+<div id="searchbox-site" style="display: none">
+  <h3>Search this site</h3>
+    <form class="search" action="../../search.html" method="get">
+      <input type="text" name="q" size="13" />
+      <input type="submit" value="Go" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+    <p class="searchtip" style="font-size: 90%">
+    </p>
+</div>
+<script type="text/javascript">$('#searchbox-ml').show(0);</script>
+<script type="text/javascript">$('#searchbox-site').show(0);</script>
+
+
+        </div>
+      </div>
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <div class="section" id="algorithms-graph-forest">
+<h1>algorithms.graph.forest<a class="headerlink" href="#algorithms-graph-forest" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="module-algorithms-graph-forest">
+<h2>Module: <code class="xref py py-mod docutils literal"><span class="pre">algorithms.graph.forest</span></code><a class="headerlink" href="#module-algorithms-graph-forest" title="Permalink to this headline">¶</a></h2>
+<p>Inheritance diagram for <code class="docutils literal"><span class="pre">nipy.algorithms.graph.forest</span></code>:</p>
+<img src="../../_images/inheritance-e82312fa26a41abbb4543b8aa42e80c97bdde05c.png" alt="Inheritance diagram of nipy.algorithms.graph.forest" usemap="#inheritance7eca553039" class="inheritance"/>
+<map id="inheritance7eca553039" name="inheritance7eca553039">
+<area shape="rect" id="node1" href="#nipy.algorithms.graph.forest.Forest" target="_top" title="Forest structure, i.e. a set of trees" alt="" coords="450,5,594,32"/>
+<area shape="rect" id="node2" href="nipy.algorithms.graph.graph.html#nipy.algorithms.graph.graph.WeightedGraph" target="_top" title="Basic weighted, directed graph class" alt="" coords="198,5,402,32"/>
+<area shape="rect" id="node3" href="nipy.algorithms.graph.graph.html#nipy.algorithms.graph.graph.Graph" target="_top" title="Basic topological (non&#45;weighted) directed Graph class" alt="" coords="5,5,150,32"/>
+</map>
+<span class="target" id="module-nipy.algorithms.graph.forest"></span><p>Module implements the Forest class</p>
+<p>A Forest is a graph with a hierarchical structure.  Each connected component of
+a forest is a tree.  The main characteristic is that each node has a single
+parent, so that a Forest is fully characterized by a “parent” array, that
+defines the unique parent of each node.  The directed relationships are encoded
+by the weight sign.</p>
+<p>Note that some methods of WeightedGraph class (e.g. dijkstra’s algorithm)
+require positive weights, so that they cannot work on forests in the current
+implementation. Specific methods (e.g. all_sidtance()) have been set instead.</p>
+<p>Main author: Bertrand thirion, 2007-2011</p>
+</div>
+<div class="section" id="forest">
+<h2><a class="reference internal" href="#nipy.algorithms.graph.forest.Forest" title="nipy.algorithms.graph.forest.Forest"><code class="xref py py-class docutils literal"><span class="pre">Forest</span></code></a><a class="headerlink" href="#forest" title="Permalink to this headline">¶</a></h2>
+<dl class="class">
+<dt id="nipy.algorithms.graph.forest.Forest">
+<em class="property">class </em><code class="descclassname">nipy.algorithms.graph.forest.</code><code class="descname">Forest</code><span class="sig-paren">(</span><em>V</em>, <em>parents=None</em><span class="sig-paren">)</span><a class="headerlink" href="#nipy.algorithms.graph.forest.Forest" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="nipy.algorithms.graph.graph.html#nipy.algorithms.graph.graph.WeightedGraph" title="nipy.algorithms.graph.graph.WeightedGraph"><code class="xref py py-class docutils literal"><span class="pre">nipy.algorithms.graph.graph.WeightedGraph</span></code></a></p>
+<p>Forest structure, i.e. a set of trees</p>
+<p>The nodes can be segmented into trees.</p>
+<p>Within each tree a node has one parent and children
+that describe the associated hierarchical structure.
+Some of the nodes can be viewed as leaves, other as roots
+The edges within a tree are associated with a weight:</p>
+<ul class="simple">
+<li>+1 from child to parent</li>
+<li>-1 from parent to child</li>
+</ul>
+<p class="rubric">Attributes</p>
+<table border="1" class="docutils">
+<colgroup>
+<col width="25%" />
+<col width="75%" />
+</colgroup>
+<tbody valign="top">
+<tr class="row-odd"><td><strong>V</strong></td>
+<td>(int) int &gt; 0, the number of vertices</td>
+</tr>
+<tr class="row-even"><td><strong>E</strong></td>
+<td>(int) the number of edges</td>
+</tr>
+<tr class="row-odd"><td><strong>parents</strong></td>
+<td>((self.V,) array) the parent array</td>
+</tr>
+<tr class="row-even"><td><strong>edges</strong></td>
+<td>((self.E, 2) array) representing pairwise neighbors</td>
+</tr>
+<tr class="row-odd"><td><strong>weights</strong></td>
+<td>((self.E,) array) +1/-1 for ascending/descending links</td>
+</tr>
+<tr class="row-even"><td><strong>children: list</strong></td>
+<td>list of arrays that represents the children any node</td>
+</tr>
+</tbody>
+</table>
+<dl class="method">
+<dt id="nipy.algorithms.graph.forest.Forest.__init__">
+<code class="descname">__init__</code><span class="sig-paren">(</span><em>V</em>, <em>parents=None</em><span class="sig-paren">)</span><a class="headerlink" href="#nipy.algorithms.graph.forest.Forest.__init__" title="Permalink to this definition">¶</a></dt>
+<dd><p>Constructor</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><p class="first"><strong>V</strong> : int</p>
+<blockquote>
+<div><p>the number of edges of the graph</p>
+</div></blockquote>
+<p><strong>parents</strong> : None or (V,) array</p>
+<blockquote class="last">
+<div><p>the parents of zach vertex.  If <a href="#id1"><span class="problematic" id="id2">`</span></a>parents`==None , the parents are
+set to range(V), i.e. each node is its own parent, and each node is
+a tree</p>
+</div></blockquote>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="nipy.algorithms.graph.forest.Forest.all_distances">
+<code class="descname">all_distances</code><span class="sig-paren">(</span><em>seed=None</em><span class="sig-paren">)</span><a class="headerlink" href="#nipy.algorithms.graph.forest.Forest.all_distances" title="Permalink to this definition">¶</a></dt>
+<dd><p>returns all the distances of the graph  as a tree</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><p class="first"><strong>seed=None array of shape(nbseed)  with valuesin [0..self.V-1]</strong></p>
+<blockquote>
+<div><p>set of vertices from which tehe distances are computed</p>
+</div></blockquote>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first last">dg: array of shape(nseed, self.V), the resulting distances</p>
+</td>
+</tr>
+</tbody>
+</table>
+<p class="rubric">Notes</p>
+<p>By convention infinite distances are given the distance np.inf</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="nipy.algorithms.graph.forest.Forest.check">
+<code class="descname">check</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#nipy.algorithms.graph.forest.Forest.check" title="Permalink to this definition">¶</a></dt>
+<dd><p>Check that self is indeed a forest, i.e. contains no loop</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Returns:</th><td class="field-body">a boolean b=0 iff there are loops, 1  otherwise</td>
+</tr>
+</tbody>
+</table>
+<p class="rubric">Notes</p>
+<p>Slow implementation, might be rewritten in C or cython</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="nipy.algorithms.graph.forest.Forest.compute_children">
+<code class="descname">compute_children</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#nipy.algorithms.graph.forest.Forest.compute_children" title="Permalink to this definition">¶</a></dt>
+<dd><p>Define the children of each node (stored in self.children)</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="nipy.algorithms.graph.forest.Forest.define_graph_attributes">
+<code class="descname">define_graph_attributes</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#nipy.algorithms.graph.forest.Forest.define_graph_attributes" title="Permalink to this definition">¶</a></dt>
+<dd><p>define the edge and weights array</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="nipy.algorithms.graph.forest.Forest.depth_from_leaves">
+<code class="descname">depth_from_leaves</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#nipy.algorithms.graph.forest.Forest.depth_from_leaves" title="Permalink to this definition">¶</a></dt>
+<dd><p>compute an index for each node: 0 for the leaves, 1 for
+their parents etc. and maximal for the roots.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Returns:</th><td class="field-body">depth: array of shape (self.V): the depth values of the vertices</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="nipy.algorithms.graph.forest.Forest.get_children">
+<code class="descname">get_children</code><span class="sig-paren">(</span><em>v=-1</em><span class="sig-paren">)</span><a class="headerlink" href="#nipy.algorithms.graph.forest.Forest.get_children" title="Permalink to this definition">¶</a></dt>
+<dd><p>Get the children of a node/each node</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><p class="first"><strong>v: int, optional</strong></p>
+<blockquote>
+<div><p>a node index</p>
+</div></blockquote>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first">children: list of int the list of children of node v (if v is provided)</p>
+<blockquote class="last">
+<div><p>a list of lists of int, the children of all nodes otherwise</p>
+</div></blockquote>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="nipy.algorithms.graph.forest.Forest.get_descendants">
+<code class="descname">get_descendants</code><span class="sig-paren">(</span><em>v</em>, <em>exclude_self=False</em><span class="sig-paren">)</span><a class="headerlink" href="#nipy.algorithms.graph.forest.Forest.get_descendants" title="Permalink to this definition">¶</a></dt>
+<dd><p>returns the nodes that are children of v as a list</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>v: int, a node index</strong></td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body">desc: list of int, the list of all descendant of the input node</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="nipy.algorithms.graph.forest.Forest.isleaf">
+<code class="descname">isleaf</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#nipy.algorithms.graph.forest.Forest.isleaf" title="Permalink to this definition">¶</a></dt>
+<dd><p>Identification of the leaves of the forest</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Returns:</th><td class="field-body">leaves: bool array of shape(self.V), indicator of the forest’s leaves</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="nipy.algorithms.graph.forest.Forest.isroot">
+<code class="descname">isroot</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#nipy.algorithms.graph.forest.Forest.isroot" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns an indicator of nodes being roots</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Returns:</th><td class="field-body">roots, array of shape(self.V, bool), indicator of the forest’s roots</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="nipy.algorithms.graph.forest.Forest.leaves_of_a_subtree">
+<code class="descname">leaves_of_a_subtree</code><span class="sig-paren">(</span><em>ids</em>, <em>custom=False</em><span class="sig-paren">)</span><a class="headerlink" href="#nipy.algorithms.graph.forest.Forest.leaves_of_a_subtree" title="Permalink to this definition">¶</a></dt>
+<dd><p>tests whether the given nodes are the leaves of a certain subtree</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><p class="first"><strong>ids: array of shape (n) that takes values in [0..self.V-1]</strong></p>
+<p><strong>custom == False, boolean</strong></p>
+<blockquote class="last">
+<div><p>if custom==true the behavior of the function is more specific
+- the different connected components are considered
+as being in a same greater tree
+- when a node has more than two subbranches,
+any subset of these children is considered as a subtree</p>
+</div></blockquote>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="nipy.algorithms.graph.forest.Forest.merge_simple_branches">
+<code class="descname">merge_simple_branches</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#nipy.algorithms.graph.forest.Forest.merge_simple_branches" title="Permalink to this definition">¶</a></dt>
+<dd><p>Return a subforest, where chained branches are collapsed</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Returns:</th><td class="field-body">sf, Forest instance, same as self, without any chain</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="nipy.algorithms.graph.forest.Forest.propagate_upward">
+<code class="descname">propagate_upward</code><span class="sig-paren">(</span><em>label</em><span class="sig-paren">)</span><a class="headerlink" href="#nipy.algorithms.graph.forest.Forest.propagate_upward" title="Permalink to this definition">¶</a></dt>
+<dd><p>Propagation of a certain labelling from leves to roots
+Assuming that label is a certain positive integer field
+this propagates these labels to the parents whenever
+the children nodes have coherent properties
+otherwise the parent value is unchanged</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>label: array of shape(self.V)</strong></td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body">label: array of shape(self.V)</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="nipy.algorithms.graph.forest.Forest.propagate_upward_and">
+<code class="descname">propagate_upward_and</code><span class="sig-paren">(</span><em>prop</em><span class="sig-paren">)</span><a class="headerlink" href="#nipy.algorithms.graph.forest.Forest.propagate_upward_and" title="Permalink to this definition">¶</a></dt>
+<dd><p>propagates from leaves to roots some binary property of the nodes
+so that prop[parents] = logical_and(prop[children])</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>prop, array of shape(self.V), the input property</strong></td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body">prop, array of shape(self.V), the output property field</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="nipy.algorithms.graph.forest.Forest.reorder_from_leaves_to_roots">
+<code class="descname">reorder_from_leaves_to_roots</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#nipy.algorithms.graph.forest.Forest.reorder_from_leaves_to_roots" title="Permalink to this definition">¶</a></dt>
+<dd><p>reorder the tree so that the leaves come first then their
+parents and so on, and the roots are last.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Returns:</th><td class="field-body"><p class="first">order: array of shape(self.V)</p>
+<blockquote class="last">
+<div><p>the order of the old vertices in the reordered graph</p>
+</div></blockquote>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="nipy.algorithms.graph.forest.Forest.subforest">
+<code class="descname">subforest</code><span class="sig-paren">(</span><em>valid</em><span class="sig-paren">)</span><a class="headerlink" href="#nipy.algorithms.graph.forest.Forest.subforest" title="Permalink to this definition">¶</a></dt>
+<dd><p>Creates a subforest with the vertices for which valid &gt; 0</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>valid: array of shape (self.V): idicator of the selected nodes</strong></td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body">subforest: a new forest instance, with a reduced set of nodes</td>
+</tr>
+</tbody>
+</table>
+<p class="rubric">Notes</p>
+<p>The children of deleted vertices become their own parent</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="nipy.algorithms.graph.forest.Forest.tree_depth">
+<code class="descname">tree_depth</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#nipy.algorithms.graph.forest.Forest.tree_depth" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns the number of hierarchical levels in the tree</p>
+</dd></dl>
+
+</dd></dl>
+
+</div>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../../genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="../../py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li class="right" >
+          <a href="nipy.algorithms.graph.graph.html" title="algorithms.graph.graph"
+             >next</a> |</li>
+        <li class="right" >
+          <a href="nipy.algorithms.graph.field.html" title="algorithms.graph.field"
+             >previous</a> |</li>
+  <li><a href="../../index.html">NIPY home</a> |&nbsp;</li>
+
+          <li class="nav-item nav-item-1"><a href="../../documentation.html" >NIPY documentation</a> &#187;</li>
+          <li class="nav-item nav-item-2"><a href="../index.html" >API</a> &#187;</li> 
+      </ul>
+    </div>
+    <div class="footer" role="contentinfo">
+        &#169; Copyright 2005-2017, Neuroimaging in Python team.
+      Last updated on Jul 08, 2017.
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.6.3.
+    </div>
+  </body>
+</html>

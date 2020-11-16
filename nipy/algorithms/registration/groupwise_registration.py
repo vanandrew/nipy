@@ -36,7 +36,6 @@ from ._registration import (_cspline_transform,
                             _cspline_sample3d,
                             _cspline_sample4d)
 
-
 VERBOSE = os.environ.get('NIPY_DEBUG_PRINT', False)
 INTERLEAVED = None
 XTOL = 1e-5

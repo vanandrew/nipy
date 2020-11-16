@@ -20,8 +20,7 @@ import numpy as np
 from numpy.linalg import pinv
 
 from scipy import stats
-from scipy.misc import factorial
-from scipy.special import gamma, gammaln, beta, hermitenorm
+from scipy.special import factorial, gamma, gammaln, beta, hermitenorm
 
 # Legacy repr printing from numpy.
 from nipy.testing import legacy_printing as setup_module  # noqa
@@ -190,7 +189,7 @@ class ECquasi(np.poly1d):
 
     def __setattr__(self, key, val):
         if key == 'exponent':
-            if 2*float(val) % 1 == 0: 
+            if 2*float(val) % 1 == 0:
                 self.__dict__[key] = float(val)
             else:
                 raise ValueError('expecting multiple of a half, got %f' % val)
@@ -499,7 +498,7 @@ class ECcone(IntrinsicVolumes):
     def integ(self, m=None, k=None):
         raise NotImplementedError # this could be done with stats.t,
                                   # at least m=1
-    
+
     def density(self, x, dim):
         """ The EC density in dimension `dim`.
         """
@@ -559,7 +558,7 @@ def mu_sphere(n, j, r=1):
     """
     if j < n:
         if n-1 == j:
-            return 2 * np.power(np.pi, n/2.) * np.power(r, n-1) / gamma(n/2.) 
+            return 2 * np.power(np.pi, n/2.) * np.power(r, n-1) / gamma(n/2.)
 
         if (n-1-j)%2 == 0:
 
@@ -719,7 +718,7 @@ class ChiBarSquared(ChiSquared):
         sf = 0.
         g = Gaussian()
         for i in range(1, self.dfn+1):
-            sf += binomial(self.dfn, i) * stats.chi.sf(x, i) / np.power(2., self.dfn) 
+            sf += binomial(self.dfn, i) * stats.chi.sf(x, i) / np.power(2., self.dfn)
 
         d = np.array([g.density(np.sqrt(x), j) for j in range(self.dfn)])
         c = np.dot(pinv(d.T), sf)
@@ -758,7 +757,7 @@ def scale_space(region, interval, kappa=1.):
     region = IntrinsicVolumes(region)
 
     D = region.order
- 
+
     out = np.zeros((D+2,))
 
     out[0] = region.mu[0]
@@ -767,10 +766,10 @@ def scale_space(region, interval, kappa=1.):
             out[i] = (1./w1 + 1./w2) * region.mu[i] * 0.5
         for j in range(int(np.floor((D-i+1)/2.)+1)):
             denom = (i + 2*j - 1.)
-            # w^-i/i when i=0 
+            # w^-i/i when i=0
             # according to Keith Worsley the 2005 paper has a typo
             if denom == 0:
-                f = np.log(w2/w1) 
+                f = np.log(w2/w1)
             else:
                 f = (w1**(-i-2*j+1) - w2**(-i-2*j+1)) / denom
             f *= kappa**((1-2*j)/2.) * (-1)**j * factorial(int(denom))
